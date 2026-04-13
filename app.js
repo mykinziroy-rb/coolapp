@@ -201,6 +201,7 @@ const closeChartButton = document.getElementById("close-chart");
 const downloadSnapshotButton = document.getElementById("download-snapshot-btn");
 const submissionStatus = document.getElementById("submission-status");
 const RESULTS_EMAIL = "david-ceo@redbeans.io";
+const RESULTS_CC_EMAILS = "mykinzi.roy@redbeans.io";
 
 function formatCurrency(value) {
   return `$${value.toLocaleString()}`;
@@ -602,6 +603,7 @@ async function sendResultsSummary() {
   body.append("total_investment", formatCurrency(payload.totalInvestment));
   body.append("summary", summary);
   body.append("_subject", `RedStride AI business blueprint for ${payload.organization.name || "New inquiry"}`);
+  body.append("_cc", RESULTS_CC_EMAILS);
   body.append("_template", "table");
   body.append("_captcha", "false");
 
