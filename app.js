@@ -198,6 +198,9 @@ const chartRows = document.getElementById("chart-rows");
 const navLockIcon = document.getElementById("nav-lock-icon");
 const requestProposalButton = document.getElementById("request-proposal-btn");
 const closeChartButton = document.getElementById("close-chart");
+const downloadSnapshotButton = document.getElementById("download-snapshot-btn");
+const submissionStatus = document.getElementById("submission-status");
+const RESULTS_EMAIL = "david-ceo@redbeans.io";
 
 function formatCurrency(value) {
   return `$${value.toLocaleString()}`;
@@ -360,10 +363,166 @@ function collectFormData(form) {
   return Object.fromEntries(data.entries());
 }
 
+function getSelectedModules() {
+  return Array.from(selectedModules).map((id) => modules[id]);
+}
+
+function buildResultsPayload() {
+  const chosen = getSelectedModules();
+  const totalInvestment = chosen.reduce((sum, module) => sum + module.price, 0);
+
+  return {
+    submittedAt: new Date().toISOString(),
+    pointOfContact: {
+      name: state.profile?.clientName || "",
+      title: state.profile?.jobTitle || "",
+      phone: state.profile?.phone || "",
+      email: state.profile?.email || ""
+    },
+    organization: {
+      name: state.profile?.orgName || "",
+      participants: state.profile?.participants || "",
+      budget: state.profile?.budget || ""
+    },
+    goals: {
+      challenges: state.profile?.challenges || "",
+      desiredOutcomes: state.profile?.goals || ""
+    },
+    selectedModules: chosen.map((module) => ({
+      title: module.title,
+      stack: module.stack,
+      price: module.price,
+      timelineStartPercent: module.start,
+      timelineWidthPercent: module.width
+    })),
+    totalInvestment
+  };
+}
+
+function buildSummaryText(payload) {
+  const moduleLines = payload.selectedModules.length
+    ? payload.selectedModules
+        .map((module) => `- ${module.title} (Stack ${module.stack}) - ${formatCurrency(module.price)}`)
+        .join("\n")
+    : "- No modules selected";
+
+  return [
+    "RedStride AI Results Summary",
+    "",
+    `Submitted: ${payload.submittedAt}`,
+    "",
+    "Point of Contact",
+    `Name: ${payload.pointOfContact.name}`,
+    `Title: ${payload.pointOfContact.title}`,
+    `Phone: ${payload.pointOfContact.phone}`,
+    `Email: ${payload.pointOfContact.email}`,
+    "",
+    "Organization",
+    `Name: ${payload.organization.name}`,
+    `Participants: ${payload.organization.participants}`,
+    `Budget: ${payload.organization.budget}`,
+    "",
+    "Challenges",
+    payload.goals.challenges || "Not provided",
+    "",
+    "Desired Outcomes",
+    payload.goals.desiredOutcomes || "Not provided",
+    "",
+    "Selected Modules",
+    moduleLines,
+    "",
+    `Total Investment: ${formatCurrency(payload.totalInvestment)}`
+  ].join("\n");
+}
+
+function setSubmissionStatus(message, kind = "") {
+  submissionStatus.textContent = message;
+  submissionStatus.classList.remove("is-success", "is-error");
+  if (kind) {
+    submissionStatus.classList.add(kind);
+  }
+}
+
+function downloadSnapshot() {
+  const payload = buildResultsPayload();
+  const orgSlug = (payload.organization.name || "redstride-results")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+  const fileName = `${orgSlug || "redstride-results"}-snapshot.json`;
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+
+  setSubmissionStatus("Snapshot downloaded.", "is-success");
+}
+
+async function sendResultsSummary() {
+  if (!state.profile?.email) {
+    setSubmissionStatus("Please complete the assessment form before sending results.", "is-error");
+    return;
+  }
+
+  const payload = buildResultsPayload();
+  const summary = buildSummaryText(payload);
+  const body = new FormData();
+
+  body.append("contact_name", payload.pointOfContact.name);
+  body.append("contact_title", payload.pointOfContact.title);
+  body.append("contact_phone", payload.pointOfContact.phone);
+  body.append("email", payload.pointOfContact.email);
+  body.append("organization_name", payload.organization.name);
+  body.append("participant_count", payload.organization.participants);
+  body.append("budget_range", payload.organization.budget);
+  body.append("selected_modules", payload.selectedModules.map((module) => module.title).join(", "));
+  body.append("total_investment", formatCurrency(payload.totalInvestment));
+  body.append("summary", summary);
+  body.append("_subject", `RedStride AI results summary for ${payload.organization.name || "New inquiry"}`);
+  body.append("_template", "table");
+  body.append("_captcha", "false");
+
+  requestProposalButton.disabled = true;
+  setSubmissionStatus("Sending results summary...", "");
+
+  try {
+    const response = await fetch(`https://formsubmit.co/ajax/${RESULTS_EMAIL}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json"
+      },
+      body
+    });
+    const result = await response.json();
+
+    if (!response.ok || result.success === false) {
+      throw new Error(result.message || "Unable to send summary.");
+    }
+
+    setSubmissionStatus(
+      "Results summary sent. The first submission may require an activation click in David's inbox before later submissions flow automatically.",
+      "is-success"
+    );
+  } catch (error) {
+    setSubmissionStatus(
+      "Email send failed in-browser. The snapshot download still works, and we can switch to a dedicated backend for guaranteed delivery.",
+      "is-error"
+    );
+  } finally {
+    requestProposalButton.disabled = false;
+  }
+}
+
 function openChart() {
   if (selectedModules.size === 0) return;
 
-  const chosen = Array.from(selectedModules).map((id) => modules[id]);
+  const chosen = getSelectedModules();
   phaseDeliverables.innerHTML = chosen.map((module) => `<li>${module.title}</li>`).join("");
 
   chartRows.innerHTML = chosen.map((module) => `
@@ -386,6 +545,7 @@ function openChart() {
   modal.classList.remove("hidden");
   modal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
+  setSubmissionStatus("");
 }
 
 function closeChart() {
@@ -429,9 +589,9 @@ document.addEventListener("keydown", (event) => {
 });
 
 requestProposalButton.addEventListener("click", () => {
-  const email = state.profile?.email || "your inbox";
-  window.alert(`Proposal request captured. A follow-up will be sent to ${email}.`);
+  sendResultsSummary();
 });
+downloadSnapshotButton.addEventListener("click", downloadSnapshot);
 
 renderModuleCards();
 

@@ -363,8 +363,12 @@
 
       <div class="modal-footer">
         <p>A formal proposal will be sent to the email provided in Step 1.</p>
-        <button id="request-proposal-btn" class="primary-button" type="button">Request Official Proposal</button>
+        <div class="modal-actions">
+          <button id="download-snapshot-btn" class="secondary-button" type="button">Download Snapshot</button>
+          <button id="request-proposal-btn" class="primary-button" type="button">Email Results Summary</button>
+        </div>
       </div>
+      <p id="submission-status" class="submission-status" aria-live="polite"></p>
     </div>
   </div>
 
