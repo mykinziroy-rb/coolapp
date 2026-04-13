@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RedStride AI | Educator Empowerment</title>
+  <meta
+    name="description"
+    content="RedStride AI helps institutions assess readiness, build AI training packages, and visualize implementation roadmaps."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <nav class="nav container" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="RedStride AI home">
+          <span class="brand-mark">R</span>
+          <span class="brand-text">RedStride <span>AI</span></span>
+        </a>
+
+        <div class="nav-links">
+          <a href="#trust">Our Philosophy</a>
+          <a href="#assessment">Assessment</a>
+          <a href="#builder" class="nav-link-lock">
+            <svg class="nav-lock" id="nav-lock-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M16 10V7a4 4 0 1 0-8 0v3"></path>
+              <rect x="4" y="10" width="16" height="10" rx="2"></rect>
+            </svg>
+            Packages
+          </a>
+        </div>
+
+        <button class="nav-cta" type="button" data-scroll-target="assessment">Start Blueprint</button>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero container">
+        <div class="hero-copy">
+          <p class="eyebrow">AI Strategy for Schools, Colleges, and Institutions</p>
+          <h1>
+            The AI Blueprint for
+            <span>Modern Education.</span>
+          </h1>
+          <p class="hero-lede">
+            Complete your institutional assessment to unlock an interactive curriculum builder,
+            transparent package pricing, and a clear transformation roadmap.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-button" type="button" data-scroll-target="assessment">Begin Assessment</button>
+            <a class="secondary-link" href="#trust">See the framework</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="hero-panel-card">
+            <p class="panel-label">Transformation Snapshot</p>
+            <h2>Built for trust, readiness, and rollout clarity.</h2>
+            <ul class="hero-metrics">
+              <li>
+                <strong>4</strong>
+                <span>training stacks</span>
+              </li>
+              <li>
+                <strong>9</strong>
+                <span>selectable modules</span>
+              </li>
+              <li>
+                <strong>1</strong>
+                <span>shared roadmap view</span>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <section id="trust" class="trust-section">
+        <div class="container trust-grid">
+          <article class="trust-card">
+            <div class="icon-chip success">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3Z"></path>
+                <path d="m9.5 12 1.8 1.8L15 10.2"></path>
+              </svg>
+            </div>
+            <h3>FERPA Aligned Safety</h3>
+            <p>Privacy-centered training frameworks designed to keep student information out of public model training loops.</p>
+          </article>
+
+          <article class="trust-card">
+            <div class="icon-chip info">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 19.5h16"></path>
+                <path d="M6 17V5.5A1.5 1.5 0 0 1 7.5 4h9A1.5 1.5 0 0 1 18 5.5V17"></path>
+                <path d="M8 8h8"></path>
+                <path d="M8 12h5"></path>
+              </svg>
+            </div>
+            <h3>Pedagogy First</h3>
+            <p>Practical AI adoption that strengthens teaching, critical thinking, and faculty confidence instead of replacing them.</p>
+          </article>
+
+          <article class="trust-card">
+            <div class="icon-chip accent">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M10.3 21a2 2 0 0 0 3.4 0"></path>
+              </svg>
+            </div>
+            <h3>Ongoing Support</h3>
+            <p>Office hours, reusable prompt libraries, and implementation guidance that continues after the workshop ends.</p>
+          </article>
+
+          <article class="trust-card">
+            <div class="icon-chip warm">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 21h18"></path>
+                <path d="M5 21V7l7-4 7 4v14"></path>
+                <path d="M9 9h.01"></path>
+                <path d="M15 9h.01"></path>
+                <path d="M9 13h.01"></path>
+                <path d="M15 13h.01"></path>
+              </svg>
+            </div>
+            <h3>Proven Track Record</h3>
+            <p>Institution-ready systems that reduce administrative drag and help teams reclaim time for high-value work.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="assessment" class="assessment-section">
+        <div class="container assessment-wrap">
+          <div class="section-heading light">
+            <p class="eyebrow">Step 1 of 2</p>
+            <h2>Institutional Assessment</h2>
+            <p>
+              Share your context so the package builder can align to your goals, constraints,
+              and institutional readiness.
+            </p>
+          </div>
+
+          <form id="assessment-form" class="assessment-card">
+            <div class="form-group">
+              <h3>Point of Contact</h3>
+              <div class="field-grid two-col">
+                <label class="field">
+                  <span>Full Name</span>
+                  <input id="clientName" name="clientName" type="text" required placeholder="e.g. Dr. Jane Smith">
+                </label>
+                <label class="field">
+                  <span>Job Title</span>
+                  <input name="jobTitle" type="text" required placeholder="e.g. Provost / Dean of Faculty">
+                </label>
+                <label class="field">
+                  <span>Phone Number</span>
+                  <input name="phone" type="tel" required placeholder="(555) 123-4567">
+                </label>
+                <label class="field">
+                  <span>Email Address</span>
+                  <input name="email" type="email" required placeholder="jane.smith@university.edu">
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <h3>Organization Details</h3>
+              <div class="field-grid two-col">
+                <label class="field">
+                  <span>Institution / Organization Name</span>
+                  <input id="orgName" name="orgName" type="text" required placeholder="e.g. State University">
+                </label>
+                <label class="field">
+                  <span>Estimated Number of Participants</span>
+                  <select name="participants" required>
+                    <option value="" selected disabled>Select size...</option>
+                    <option value="1-10">1 - 10 Faculty/Staff</option>
+                    <option value="11-50">11 - 50 Faculty/Staff</option>
+                    <option value="51-150">51 - 150 Faculty/Staff</option>
+                    <option value="150+">150+ (Institution-Wide)</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <h3>Challenges &amp; Goals</h3>
+              <div class="field-grid">
+                <label class="field">
+                  <span>What complications are you currently facing with AI?</span>
+                  <textarea name="challenges" required placeholder="e.g. Faculty are worried about plagiarism, leadership lacks a policy framework, admin workflows are overloaded..."></textarea>
+                </label>
+                <label class="field">
+                  <span>What are you looking to gain from this training?</span>
+                  <textarea name="goals" required placeholder="e.g. A clearer institutional policy, safer implementation practices, and time-saving workflows..."></textarea>
+                </label>
+                <label class="field budget-field">
+                  <span>Estimated Training Budget</span>
+                  <select name="budget" required>
+                    <option value="" selected disabled>Select budget range...</option>
+                    <option value="Under $5k">Under $5,000</option>
+                    <option value="$5k-$15k">$5,000 - $15,000</option>
+                    <option value="$15k-$30k">$15,000 - $30,000</option>
+                    <option value="$30k+">$30,000+</option>
+                    <option value="Not sure">Not sure yet / Needs assessment</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-footer">
+              <p class="form-note">Secure and confidential. This draft stores progress in your browser for now.</p>
+              <button class="primary-button" type="submit">Save &amp; Unlock Builder</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="builder" class="builder-section is-locked">
+        <div id="builder-lock" class="lock-overlay">
+          <div class="lock-panel">
+            <div class="lock-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M16 10V7a4 4 0 1 0-8 0v3"></path>
+                <rect x="4" y="10" width="16" height="10" rx="2"></rect>
+              </svg>
+            </div>
+            <h3>Curriculum Builder Locked</h3>
+            <p>Please complete the Institutional Assessment above to unlock package configuration and roadmap generation.</p>
+            <button class="secondary-button" type="button" data-scroll-target="assessment">Go to Step 1</button>
+          </div>
+        </div>
+
+        <div class="container builder-wrap">
+          <div class="section-heading">
+            <p class="eyebrow">Step 2 of 2</p>
+            <h2>Build Your Interactive Curriculum</h2>
+            <p>Select modules to generate transparent pricing and a shareable implementation roadmap.</p>
+          </div>
+
+          <div class="builder-layout">
+            <div class="stacks">
+              <section class="stack-section">
+                <div class="stack-heading">
+                  <span class="stack-badge">A</span>
+                  <h3>Operational Stack</h3>
+                </div>
+                <div class="module-grid" id="stack-a"></div>
+              </section>
+
+              <section class="stack-section">
+                <div class="stack-heading">
+                  <span class="stack-badge">B</span>
+                  <h3>Practices &amp; Methods Stack</h3>
+                </div>
+                <div class="module-grid" id="stack-b"></div>
+              </section>
+
+              <section class="stack-section">
+                <div class="stack-heading">
+                  <span class="stack-badge">C</span>
+                  <h3>Marketing &amp; Design Stack</h3>
+                </div>
+                <div class="module-grid" id="stack-c"></div>
+              </section>
+
+              <section class="stack-section">
+                <div class="stack-heading">
+                  <span class="stack-badge">D</span>
+                  <h3>Funding &amp; Growth Stack</h3>
+                </div>
+                <div class="module-grid" id="stack-d"></div>
+              </section>
+            </div>
+
+            <aside class="sidebar-card">
+              <div class="sidebar-heading">
+                <p>Live Budgeting</p>
+                <span id="sidebar-client-name"></span>
+              </div>
+
+              <div id="selected-list" class="selected-list">
+                <div class="empty-state">
+                  Select modules on the left to build your estimate.
+                </div>
+              </div>
+
+              <div class="sidebar-total">
+                <div>
+                  <span>Total Investment</span>
+                  <strong id="total-price">$0</strong>
+                </div>
+              </div>
+
+              <button id="finalize-btn" class="primary-button full-width is-disabled" type="button" disabled>
+                Finalize My Package
+              </button>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="chart-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-org-title">
+      <button class="modal-close" id="close-chart" type="button" aria-label="Close roadmap">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+
+      <div class="modal-header">
+        <p class="modal-pill">Confirmed Roadmap</p>
+        <h2 id="modal-org-title">Your AI Adoption Project Chart</h2>
+        <p>Customized transformation timeline based on your selected stack.</p>
+      </div>
+
+      <div class="phase-grid">
+        <article class="phase-card">
+          <p class="phase-label">Phase 1</p>
+          <h3>Discovery</h3>
+          <p>Assessment of institutional readiness, workflows, and AI literacy across the team.</p>
+        </article>
+
+        <article class="phase-card active">
+          <div class="phase-active-row">
+            <p class="phase-label">Phase 2</p>
+            <span>Active Workshops</span>
+          </div>
+          <h3>Immersion</h3>
+          <p>Live workshops and guided rollout sessions tied directly to your selected package.</p>
+          <ul id="phase-2-deliverables" class="deliverables-list"></ul>
+        </article>
+
+        <article class="phase-card">
+          <p class="phase-label">Phase 3</p>
+          <h3>Review</h3>
+          <p>Evaluation of faculty adoption, workflow efficiency, and measurable post-training impact.</p>
+        </article>
+      </div>
+
+      <div class="chart-shell">
+        <div class="chart-header">
+          <div>Training Module</div>
+          <div class="chart-weeks">
+            <span>Week 1</span>
+            <span>Week 2</span>
+            <span>Week 3</span>
+            <span>Week 4</span>
+          </div>
+        </div>
+        <div id="chart-rows" class="chart-rows"></div>
+      </div>
+
+      <div class="modal-footer">
+        <p>A formal proposal will be sent to the email provided in Step 1.</p>
+        <button id="request-proposal-btn" class="primary-button" type="button">Request Official Proposal</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
