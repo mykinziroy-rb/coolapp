@@ -200,8 +200,10 @@ const requestProposalButton = document.getElementById("request-proposal-btn");
 const closeChartButton = document.getElementById("close-chart");
 const downloadSnapshotButton = document.getElementById("download-snapshot-btn");
 const submissionStatus = document.getElementById("submission-status");
-const RESULTS_EMAIL = "david-ceo@redbeans.io";
-const RESULTS_CC_EMAILS = "mykinzi.roy@redbeans.io";
+const RESULTS_EMAILS = [
+  "david-ceo@redbeans.io",
+  "mykinzi.roy@redbeans.io"
+];
 
 function formatCurrency(value) {
   return `$${value.toLocaleString()}`;
@@ -590,42 +592,45 @@ async function sendResultsSummary() {
 
   const payload = buildResultsPayload();
   const summary = buildSummaryText(payload);
-  const body = new FormData();
-
-  body.append("contact_name", payload.pointOfContact.name);
-  body.append("contact_title", payload.pointOfContact.title);
-  body.append("contact_phone", payload.pointOfContact.phone);
-  body.append("email", payload.pointOfContact.email);
-  body.append("organization_name", payload.organization.name);
-  body.append("participant_count", payload.organization.participants);
-  body.append("budget_range", payload.organization.budget);
-  body.append("selected_modules", payload.selectedModules.map((module) => module.title).join(", "));
-  body.append("total_investment", formatCurrency(payload.totalInvestment));
-  body.append("summary", summary);
-  body.append("_subject", `RedStride AI business blueprint for ${payload.organization.name || "New inquiry"}`);
-  body.append("_cc", RESULTS_CC_EMAILS);
-  body.append("_template", "table");
-  body.append("_captcha", "false");
+  const buildRequestBody = () => {
+    const body = new FormData();
+    body.append("contact_name", payload.pointOfContact.name);
+    body.append("contact_title", payload.pointOfContact.title);
+    body.append("contact_phone", payload.pointOfContact.phone);
+    body.append("email", payload.pointOfContact.email);
+    body.append("organization_name", payload.organization.name);
+    body.append("participant_count", payload.organization.participants);
+    body.append("budget_range", payload.organization.budget);
+    body.append("selected_modules", payload.selectedModules.map((module) => module.title).join(", "));
+    body.append("total_investment", formatCurrency(payload.totalInvestment));
+    body.append("summary", summary);
+    body.append("_subject", `RedStride AI business blueprint for ${payload.organization.name || "New inquiry"}`);
+    body.append("_template", "table");
+    body.append("_captcha", "false");
+    return body;
+  };
 
   requestProposalButton.disabled = true;
-  setSubmissionStatus("Sending results summary...", "");
+  setSubmissionStatus("Sending results summary to Red Beans...", "");
 
   try {
-    const response = await fetch(`https://formsubmit.co/ajax/${RESULTS_EMAIL}`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json"
-      },
-      body
-    });
-    const result = await response.json();
+    for (const recipient of RESULTS_EMAILS) {
+      const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json"
+        },
+        body: buildRequestBody()
+      });
+      const result = await response.json();
 
-    if (!response.ok || result.success === false) {
-      throw new Error(result.message || "Unable to send summary.");
+      if (!response.ok || result.success === false) {
+        throw new Error(result.message || `Unable to send summary to ${recipient}.`);
+      }
     }
 
     setSubmissionStatus(
-      "Results summary sent. The first submission may require an activation click in David's inbox before later submissions flow automatically.",
+      "Results summary sent to David and MyKinzi. If either inbox has never been activated in FormSubmit before, that recipient may need to click the activation email once before future submissions flow automatically.",
       "is-success"
     );
   } catch (error) {
