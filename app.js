@@ -1,15 +1,15 @@
 const modules = {
   policy: {
     id: "policy",
-    title: "AI Policy Lab",
+    title: "Corporate AI Policy",
     price: 2500,
     stack: "A",
-    description: "Comprehensive handbook for student and faculty AI usage.",
+    description: "Draft company handbooks for acceptable AI use across teams.",
     details: [
-      "Custom usage guidelines and institutional definitions",
-      "Plagiarism versus co-creation frameworks",
-      "Faculty training presentation deck",
-      "Annual policy update review"
+      "Custom acceptable-use guidelines and definitions",
+      "Internal approval and escalation framework",
+      "Leadership-ready policy rollout deck",
+      "Quarterly policy review recommendations"
     ],
     start: 5,
     width: 30,
@@ -20,15 +20,15 @@ const modules = {
   },
   admin: {
     id: "admin",
-    title: "Admin Automator",
+    title: "Operations Automator",
     price: 1800,
     stack: "A",
-    description: "Streamline scheduling, emails, and reporting workflows.",
+    description: "Streamline internal workflows, email handling, and reporting operations.",
     details: [
-      "Email triage prompt library",
-      "Report summarization templates",
+      "Workflow audit and automation opportunities",
+      "Email triage and reporting prompt library",
       "Meeting note and action item automations",
-      "2-hour admin staff workshop"
+      "Red Beans-led operations training session"
     ],
     start: 15,
     width: 20,
@@ -39,15 +39,15 @@ const modules = {
   },
   safety: {
     id: "safety",
-    title: "Data Safety Shield",
+    title: "Enterprise Data Shield",
     price: 2000,
     stack: "A",
-    description: "Protecting student privacy in a generative world.",
+    description: "Protect proprietary company and client data from leaking into public LLMs.",
     details: [
       "AI vendor vetting checklist",
-      "PII anonymization guide",
-      "FERPA and COPPA compliance mapping",
-      "Institutional risk assessment tool"
+      "Confidential data handling guide",
+      "Internal risk classification template",
+      "Safe prompt and tooling standards"
     ],
     start: 0,
     width: 12,
@@ -58,15 +58,15 @@ const modules = {
   },
   feedback: {
     id: "feedback",
-    title: "The Feedback Loop",
+    title: "Copilot Mastery",
     price: 2800,
     stack: "B",
-    description: "AI-driven assessment for faster, deeper student feedback.",
+    description: "Train teams to use AI to dramatically increase daily administrative output.",
     details: [
-      "Automated grading rubric builders",
-      "Draft feedback prompt frameworks",
-      "Peer review integration strategy",
-      "LMS integration guide"
+      "Role-based prompt training for daily work",
+      "Task acceleration playbooks for teams",
+      "Meeting, writing, and planning workflows",
+      "Hands-on productivity workshop"
     ],
     start: 40,
     width: 30,
@@ -77,15 +77,15 @@ const modules = {
   },
   bots: {
     id: "bots",
-    title: "Custom Socratic Bots",
+    title: "Custom Knowledge Bots",
     price: 3500,
     stack: "B",
-    description: "Personalized tutoring agents for your specific courses.",
+    description: "Build internal chatbots trained on your company SOPs and knowledge base.",
     details: [
-      "One custom tutor persona setup",
-      "Course-specific syllabus ingestion",
-      "AI guardrails and safety boundaries",
-      "Faculty deployment handbook"
+      "Custom internal bot use-case design",
+      "SOP and knowledge-base ingestion planning",
+      "AI guardrails and access boundaries",
+      "Deployment and handoff guide"
     ],
     start: 50,
     width: 40,
@@ -96,15 +96,15 @@ const modules = {
   },
   brand: {
     id: "brand",
-    title: "Brand Spark",
+    title: "Brand Content Engine",
     price: 2200,
     stack: "C",
-    description: "Generate high-fidelity school assets and communications.",
+    description: "Scale social media, newsletters, and copywriting with AI-supported workflows.",
     details: [
       "Brand voice tuning profiles",
-      "Image generation prompt guide",
-      "Newsletter and social copy templates",
-      "Marketing alignment workshop"
+      "Campaign content prompt library",
+      "Newsletter and social templates",
+      "Marketing workflow alignment session"
     ],
     start: 30,
     width: 25,
@@ -115,15 +115,15 @@ const modules = {
   },
   video: {
     id: "video",
-    title: "AI Video Faculty",
+    title: "AI Video & Communications",
     price: 4000,
     stack: "C",
-    description: "Create digital twin lectures for flipped classrooms.",
+    description: "Create digital avatars for internal training or external communications.",
     details: [
       "AI avatar and studio creation guide",
-      "Voice cloning ethical compliance framework",
+      "Voice and likeness governance framework",
       "Script-to-video workflow",
-      "Automated multilingual captioning setup"
+      "Captioning and communications distribution setup"
     ],
     start: 60,
     width: 35,
@@ -134,15 +134,15 @@ const modules = {
   },
   grants: {
     id: "grants",
-    title: "Grant & Proposal AI",
+    title: "RFP & Proposal AI",
     price: 3200,
     stack: "D",
-    description: "Train systems on successful past grants to accelerate new proposals.",
+    description: "Train models on past successful proposals to accelerate new bids and RFP responses.",
     details: [
-      "Grant proposal structuring prompts",
-      "Budget narrative templates",
-      "Past-grant ingestion setup",
-      "Specialized writing workshop"
+      "Proposal structuring prompt system",
+      "Past-response ingestion planning",
+      "Approval-ready drafting workflows",
+      "Bid and proposal training workshop"
     ],
     start: 20,
     width: 25,
@@ -153,15 +153,15 @@ const modules = {
   },
   scholarship: {
     id: "scholarship",
-    title: "Scholarship Tracker",
+    title: "CRM & Lead AI",
     price: 2600,
     stack: "D",
-    description: "Automate matching, monitor applications, and track funding activity.",
+    description: "Automate lead triage, CRM hygiene, and outreach tracking for sales teams.",
     details: [
-      "Student-to-scholarship matching logic",
-      "Application triage framework",
-      "Automated outreach templates",
-      "Fund utilization dashboard setup"
+      "Lead triage workflow design",
+      "CRM cleanup and tagging logic",
+      "Sales outreach template system",
+      "Follow-up tracking recommendations"
     ],
     start: 45,
     width: 30,
@@ -407,7 +407,7 @@ function buildSummaryText(payload) {
     : "- No modules selected";
 
   return [
-    "RedStride AI Results Summary",
+    "RedStride AI Business Blueprint Summary",
     "",
     `Submitted: ${payload.submittedAt}`,
     "",
@@ -455,7 +455,7 @@ function downloadSnapshot() {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
-  const fileName = `${orgSlug || "redstride-results"}-snapshot.pdf`;
+  const fileName = `${orgSlug || "redstride-results"}-ai-blueprint.pdf`;
 
   if (!window.jspdf?.jsPDF) {
     setSubmissionStatus("PDF export is not available right now. Please refresh and try again.", "is-error");
@@ -487,7 +487,7 @@ function downloadSnapshot() {
   doc.setTextColor(255, 255, 255);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(20);
-  doc.text("RedStride AI Snapshot", margin + 6, y + 9);
+  doc.text("RedStride AI Business Blueprint", margin + 6, y + 9);
   doc.setFontSize(10);
   doc.setFont("helvetica", "normal");
   doc.text(`Generated ${new Date(payload.submittedAt).toLocaleString()}`, margin + 6, y + 16);
@@ -511,7 +511,7 @@ function downloadSnapshot() {
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(14);
-  doc.text("Organization", margin, y);
+  doc.text("Business", margin, y);
   y += 8;
   doc.setFont("helvetica", "normal");
   doc.setFontSize(11);
@@ -601,7 +601,7 @@ async function sendResultsSummary() {
   body.append("selected_modules", payload.selectedModules.map((module) => module.title).join(", "));
   body.append("total_investment", formatCurrency(payload.totalInvestment));
   body.append("summary", summary);
-  body.append("_subject", `RedStride AI results summary for ${payload.organization.name || "New inquiry"}`);
+  body.append("_subject", `RedStride AI business blueprint for ${payload.organization.name || "New inquiry"}`);
   body.append("_template", "table");
   body.append("_captcha", "false");
 
@@ -628,7 +628,7 @@ async function sendResultsSummary() {
     );
   } catch (error) {
     setSubmissionStatus(
-      "Email send failed in-browser. The snapshot download still works, and we can switch to a dedicated backend for guaranteed delivery.",
+      "Email send failed in-browser. The PDF download still works, and we can switch to a dedicated backend for guaranteed delivery.",
       "is-error"
     );
   } finally {

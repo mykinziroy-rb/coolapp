@@ -1,11 +1,11 @@
 # RedStride AI Landing App
 
-Static web app for the RedStride AI institutional assessment and curriculum builder.
+Static web app for the RedStride AI business assessment and custom training blueprint builder.
 
 ## What is included
 
 - branded landing page using the provided RedStride palette
-- institutional assessment form
+- business assessment form
 - locked curriculum builder that unlocks after form completion
 - live pricing sidebar
 - roadmap modal with project timeline visualization
