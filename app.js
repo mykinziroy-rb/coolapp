@@ -443,25 +443,142 @@ function setSubmissionStatus(message, kind = "") {
   }
 }
 
+function addWrappedText(doc, text, x, y, maxWidth, lineHeight = 6, options = {}) {
+  const lines = doc.splitTextToSize(text, maxWidth);
+  doc.text(lines, x, y, options);
+  return y + lines.length * lineHeight;
+}
+
 function downloadSnapshot() {
   const payload = buildResultsPayload();
   const orgSlug = (payload.organization.name || "redstride-results")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
-  const fileName = `${orgSlug || "redstride-results"}-snapshot.json`;
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
+  const fileName = `${orgSlug || "redstride-results"}-snapshot.pdf`;
 
-  link.href = url;
-  link.download = fileName;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
+  if (!window.jspdf?.jsPDF) {
+    setSubmissionStatus("PDF export is not available right now. Please refresh and try again.", "is-error");
+    return;
+  }
 
-  setSubmissionStatus("Snapshot downloaded.", "is-success");
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({
+    orientation: "portrait",
+    unit: "mm",
+    format: "a4"
+  });
+
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const margin = 18;
+  const contentWidth = pageWidth - margin * 2;
+  let y = 20;
+
+  const ensureSpace = (needed = 16) => {
+    if (y + needed > pageHeight - margin) {
+      doc.addPage();
+      y = 20;
+    }
+  };
+
+  doc.setFillColor(128, 1, 1);
+  doc.roundedRect(margin, y, contentWidth, 22, 4, 4, "F");
+  doc.setTextColor(255, 255, 255);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(20);
+  doc.text("RedStride AI Snapshot", margin + 6, y + 9);
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "normal");
+  doc.text(`Generated ${new Date(payload.submittedAt).toLocaleString()}`, margin + 6, y + 16);
+  y += 32;
+
+  doc.setTextColor(45, 46, 48);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Point of Contact", margin, y);
+  y += 8;
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(11);
+  doc.text(`Name: ${payload.pointOfContact.name}`, margin, y);
+  y += 6;
+  doc.text(`Title: ${payload.pointOfContact.title}`, margin, y);
+  y += 6;
+  doc.text(`Phone: ${payload.pointOfContact.phone}`, margin, y);
+  y += 6;
+  doc.text(`Email: ${payload.pointOfContact.email}`, margin, y);
+  y += 10;
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Organization", margin, y);
+  y += 8;
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(11);
+  doc.text(`Name: ${payload.organization.name}`, margin, y);
+  y += 6;
+  doc.text(`Participants: ${payload.organization.participants}`, margin, y);
+  y += 6;
+  doc.text(`Budget: ${payload.organization.budget}`, margin, y);
+  y += 10;
+
+  ensureSpace(24);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Challenges", margin, y);
+  y += 7;
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(11);
+  y = addWrappedText(doc, payload.goals.challenges || "Not provided", margin, y, contentWidth, 6);
+  y += 6;
+
+  ensureSpace(24);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Desired Outcomes", margin, y);
+  y += 7;
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(11);
+  y = addWrappedText(doc, payload.goals.desiredOutcomes || "Not provided", margin, y, contentWidth, 6);
+  y += 8;
+
+  ensureSpace(30);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("Selected Modules", margin, y);
+  y += 8;
+
+  if (payload.selectedModules.length === 0) {
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+    doc.text("No modules selected", margin, y);
+    y += 8;
+  } else {
+    payload.selectedModules.forEach((module) => {
+      ensureSpace(18);
+      doc.setFillColor(232, 223, 216);
+      doc.roundedRect(margin, y - 5, contentWidth, 14, 3, 3, "F");
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
+      doc.text(module.title, margin + 4, y);
+      doc.setFont("helvetica", "normal");
+      doc.text(`Stack ${module.stack}`, margin + 4, y + 5);
+      doc.setFont("helvetica", "bold");
+      doc.text(formatCurrency(module.price), pageWidth - margin - 4, y, { align: "right" });
+      y += 18;
+    });
+  }
+
+  ensureSpace(18);
+  doc.setDrawColor(180, 112, 109);
+  doc.line(margin, y, pageWidth - margin, y);
+  y += 9;
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(13);
+  doc.text(`Total Investment: ${formatCurrency(payload.totalInvestment)}`, margin, y);
+
+  doc.save(fileName);
+  setSubmissionStatus("PDF snapshot downloaded.", "is-success");
 }
 
 async function sendResultsSummary() {
