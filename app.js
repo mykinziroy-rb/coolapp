@@ -169,6 +169,82 @@ const modules = {
     iconColor: "#db2777",
     iconBg: "rgba(219, 39, 119, 0.12)",
     icon: "award"
+  },
+  recruiting: {
+    id: "recruiting",
+    title: "AI Recruiting & Sourcing",
+    price: 2900,
+    stack: "E",
+    description: "Speed up sourcing, candidate research, and screening workflows with AI-assisted recruiting systems.",
+    details: [
+      "AI-assisted sourcing workflow design",
+      "Candidate research and screening prompts",
+      "Recruiter outreach templates",
+      "Talent pipeline operating guide"
+    ],
+    start: 18,
+    width: 24,
+    color: "#2563eb",
+    iconColor: "#2563eb",
+    iconBg: "rgba(37, 99, 235, 0.12)",
+    icon: "briefcase"
+  },
+  onboarding: {
+    id: "onboarding",
+    title: "Automated Onboarding",
+    price: 3100,
+    stack: "E",
+    description: "Create smoother employee onboarding with automated training content, checklists, and role-based enablement.",
+    details: [
+      "Onboarding workflow mapping",
+      "Role-based onboarding content prompts",
+      "Checklist and document automation setup",
+      "Manager handoff and enablement guide"
+    ],
+    start: 28,
+    width: 26,
+    color: "#7c3aed",
+    iconColor: "#7c3aed",
+    iconBg: "rgba(124, 58, 237, 0.12)",
+    icon: "clipboard"
+  },
+  strategy: {
+    id: "strategy",
+    title: "C-Suite AI Strategy",
+    price: 6500,
+    stack: "F",
+    description: "Executive-level strategy module for prioritizing AI adoption, governance, and investment across the business.",
+    details: [
+      "Executive AI opportunity mapping",
+      "Risk, governance, and investment framework",
+      "Leadership decision workshop",
+      "Strategic rollout summary document"
+    ],
+    start: 6,
+    width: 32,
+    color: "#4e0f11",
+    iconColor: "#4e0f11",
+    iconBg: "rgba(78, 15, 17, 0.12)",
+    icon: "briefcase"
+  },
+  finance: {
+    id: "finance",
+    title: "Financial Data Synthesizer",
+    price: 7200,
+    stack: "F",
+    description: "Secure spreadsheet analysis and financial synthesis workflows for high-value reporting and decision support.",
+    details: [
+      "Secure spreadsheet analysis workflow",
+      "Financial reporting synthesis prompts",
+      "Access and data-handling safeguards",
+      "Leadership-ready insights template pack"
+    ],
+    start: 42,
+    width: 34,
+    color: "#0f766e",
+    iconColor: "#0f766e",
+    iconBg: "rgba(15, 118, 110, 0.12)",
+    icon: "chart"
   }
 };
 
@@ -182,7 +258,9 @@ const stackMounts = {
   A: document.getElementById("stack-a"),
   B: document.getElementById("stack-b"),
   C: document.getElementById("stack-c"),
-  D: document.getElementById("stack-d")
+  D: document.getElementById("stack-d"),
+  E: document.getElementById("stack-e"),
+  F: document.getElementById("stack-f")
 };
 
 const assessmentForm = document.getElementById("assessment-form");
@@ -219,7 +297,10 @@ function renderIcon(name) {
     sparkles: '<path d="m12 3 1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7L12 3Z"></path><path d="m18 15 .9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15Z"></path><path d="m5 14 .7 1.8L7.5 16l-1.8.7L5 18.5l-.7-1.8L2.5 16l1.8-.7L5 14Z"></path>',
     video: '<rect x="3" y="6" width="14" height="12" rx="2"></rect><path d="m17 10 4-2v8l-4-2"></path>',
     document: '<path d="M8 3h6l4 4v14H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path><path d="M14 3v5h5"></path><path d="M10 13h4"></path><path d="M10 17h4"></path>',
-    award: '<circle cx="12" cy="8" r="4"></circle><path d="m8.5 14.5-1 6L12 18l4.5 2.5-1-6"></path>'
+    award: '<circle cx="12" cy="8" r="4"></circle><path d="m8.5 14.5-1 6L12 18l4.5 2.5-1-6"></path>',
+    briefcase: '<path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M3 12h18"></path>',
+    clipboard: '<rect x="7" y="4" width="10" height="17" rx="2"></rect><path d="M9 4.5h6"></path><path d="M9 9h6"></path><path d="M9 13h6"></path><path d="M9 17h4"></path>',
+    chart: '<path d="M4 19h16"></path><path d="M7 16V9"></path><path d="M12 16V5"></path><path d="M17 16v-7"></path>'
   };
 
   return `
