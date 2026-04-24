@@ -1,394 +1,528 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RedStride AI | Business AI Blueprint</title>
-  <meta
-    name="description"
-    content="RedStride AI helps businesses choose operational priorities, receive custom AI training packages, and deploy with exact delivery dates and safe internal policies."
-  >
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  >
-  <link rel="stylesheet" href="./styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Beans AI | Corporate Training Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#2d2e30',
+                            darkerRed: '#4e0f11',
+                            red: '#800101',
+                            rose: '#b4706d',
+                            beige: '#e8dfd8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --brand-red: #800101;
+            --brand-dark: #2d2e30;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e8dfd8;
+            color: var(--brand-dark);
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #800101, #b4706d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-field {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid #b4706d;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            color: #2d2e30;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #800101;
+            box-shadow: 0 0 0 3px rgba(128, 1, 1, 0.1);
+            background: white;
+        }
+        .input-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .module-card {
+            transition: all 0.2s ease-out;
+            cursor: pointer;
+            border: 2px solid transparent;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+        .module-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        .module-card.selected {
+            border-color: var(--brand-red);
+            background-color: rgba(180, 112, 109, 0.1);
+        }
+
+        .chart-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, #e8dfd8 1px, transparent 1px), linear-gradient(to bottom, #e8dfd8 1px, transparent 1px);
+        }
+        .gantt-bar {
+            height: 32px;
+            border-radius: 6px;
+            position: relative;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade { animation: fadeIn 0.4s ease-out forwards; }
+    </style>
 </head>
-<body>
-  <div class="page-shell">
-    <header class="site-header">
-      <nav class="nav container" aria-label="Main navigation">
-        <a class="brand" href="#top" aria-label="RedStride AI home">
-          <span class="brand-mark">R</span>
-          <span class="brand-text">RedStride <span>AI</span></span>
-        </a>
-
-        <div class="nav-links">
-          <a href="#trust">Our Philosophy</a>
-          <a href="#assessment">Assessment</a>
-          <a href="#builder" class="nav-link-lock">
-            <svg class="nav-lock" id="nav-lock-icon" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M16 10V7a4 4 0 1 0-8 0v3"></path>
-              <rect x="4" y="10" width="16" height="10" rx="2"></rect>
-            </svg>
-            Packages
-          </a>
+<body class="overflow-x-hidden">
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-brand-beige">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <img src="RedStride AI.jpg" alt="Red Beans AI Logo" class="w-12 h-12 rounded-xl shadow-lg shadow-brand-rose/50 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/100x100/800101/e8dfd8?text=RB';">
+                <span class="text-xl font-bold tracking-tight text-brand-dark">Red Beans <span class="text-brand-red">AI</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-500">
+                <a href="#trust" class="hover:text-brand-red transition">Why Red Beans</a>
+                <a href="#builder" class="hover:text-brand-red transition">Packages</a>
+                <a href="#faq" class="hover:text-brand-red transition">FAQ</a>
+            </div>
+            <button onclick="document.getElementById('assessment').scrollIntoView({behavior: 'smooth'})" class="bg-brand-dark text-brand-beige px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-brand-red transition">
+                Start Blueprint
+            </button>
         </div>
+    </nav>
 
-        <button class="nav-cta" type="button" data-scroll-target="assessment">Start Blueprint</button>
-      </nav>
-    </header>
-
-    <main id="top">
-      <section class="hero container">
-        <div class="hero-copy">
-          <p class="eyebrow">Custom AI Training and Adoption Blueprint for Modern Businesses</p>
-          <h1>
-            The AI Blueprint for
-            <span>Modern Business.</span>
-          </h1>
-          <p class="hero-lede">
-            Pick your operational bottlenecks and Red Beans will deliver a customized training roadmap,
-            exact delivery dates, and the internal policies your team needs to execute AI safely.
-          </p>
-          <div class="hero-actions">
-            <button class="primary-button" type="button" data-scroll-target="assessment">Begin Assessment</button>
-            <a class="secondary-link" href="#trust">See the framework</a>
-          </div>
+    <section class="pt-32 pb-16 px-6 lg:pt-40 lg:pb-24">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="text-left">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-brand-dark leading-tight">
+                    Upskilling your <br>
+                    <span class="gradient-text">workforce.</span>
+                </h1>
+                <p class="text-lg text-slate-600 mb-10 max-w-lg leading-relaxed">
+                    We equip businesses with a custom AI roadmap in one interactive session. Select your team's operational bottlenecks below to generate an actionable timeline, downloadable PDF snapshot, and a custom enterprise quote.
+                </p>
+                <div class="flex items-center gap-4">
+                    <button onclick="document.getElementById('assessment').scrollIntoView({behavior: 'smooth'})" class="bg-brand-red text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-darkerRed transition flex items-center gap-2 shadow-lg shadow-brand-rose/50">
+                        Build Your Roadmap <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -inset-4 bg-brand-rose/20 rounded-[2.5rem] transform rotate-3"></div>
+                <div class="absolute -inset-4 bg-brand-red/10 rounded-[2.5rem] transform -rotate-2"></div>
+                <div class="relative h-[400px] lg:h-[550px] rounded-3xl overflow-hidden shadow-2xl border border-brand-beige">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=80" alt="Agile Team AI Workshop" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/1600x900/2d2e30/e8dfd8?text=Team+Workshop';">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-dark/60 via-transparent to-transparent"></div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <aside class="hero-panel">
-          <div class="hero-panel-card">
-            <p class="panel-label">Transformation Snapshot</p>
-            <h2>Built for operational clarity, safe adoption, and measurable rollout.</h2>
-            <ul class="hero-metrics">
-              <li>
-                <strong>6</strong>
-                <span>training stacks</span>
-              </li>
-              <li>
-                <strong>13</strong>
-                <span>selectable modules</span>
-              </li>
-              <li>
-                <strong>1</strong>
-                <span>shared roadmap view</span>
-              </li>
-            </ul>
-          </div>
-        </aside>
-      </section>
-
-      <section id="trust" class="trust-section">
-        <div class="container trust-grid">
-          <article class="trust-card">
-            <div class="icon-chip success">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3Z"></path>
-                <path d="m9.5 12 1.8 1.8L15 10.2"></path>
-              </svg>
+    <section id="trust" class="py-12 bg-white border-t border-brand-beige">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center p-6">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                    <h3 class="font-bold text-sm mb-2 text-brand-dark">Enterprise-Grade Safety</h3>
+                    <p class="text-xs text-slate-500">Strict data privacy frameworks ensuring your proprietary company data never trains public AI models.</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="users" class="w-6 h-6"></i></div>
+                    <h3 class="font-bold text-sm mb-2 text-brand-dark">Team-First Adoption</h3>
+                    <p class="text-xs text-slate-500">We train your people to use AI as a copilot to boost productivity, not replace human judgment.</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-12 h-12 bg-brand-rose/20 text-brand-red rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="life-buoy" class="w-6 h-6"></i></div>
+                    <h3 class="font-bold text-sm mb-2 text-brand-dark">Ongoing Support</h3>
+                    <p class="text-xs text-slate-500">Continuous post-training access to Red Beans experts and evolving corporate prompt libraries.</p>
+                </div>
+                <div class="text-center p-6">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mx-auto mb-4"><i data-lucide="trending-up" class="w-6 h-6"></i></div>
+                    <h3 class="font-bold text-sm mb-2 text-brand-dark">Measurable ROI</h3>
+                    <p class="text-xs text-slate-500">Focused on reclaiming thousands of hours in administrative bloat and accelerating revenue-generating tasks.</p>
+                </div>
             </div>
-            <h3>Policy-Ready Governance</h3>
-            <p>Internal AI rules, handbooks, and usage boundaries designed to keep teams moving without exposing the business.</p>
-          </article>
-
-          <article class="trust-card">
-            <div class="icon-chip info">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 19.5h16"></path>
-                <path d="M6 17V5.5A1.5 1.5 0 0 1 7.5 4h9A1.5 1.5 0 0 1 18 5.5V17"></path>
-                <path d="M8 8h8"></path>
-                <path d="M8 12h5"></path>
-              </svg>
-            </div>
-            <h3>Operations First</h3>
-            <p>Every training package is built around workflow bottlenecks, not theory, so teams see practical gains quickly.</p>
-          </article>
-
-          <article class="trust-card">
-            <div class="icon-chip accent">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                <path d="M10.3 21a2 2 0 0 0 3.4 0"></path>
-              </svg>
-            </div>
-            <h3>Delivery By Experts</h3>
-            <p>Red Beans handles the enablement, training delivery, and supporting materials so internal teams are not left to figure it out alone.</p>
-          </article>
-
-          <article class="trust-card">
-            <div class="icon-chip warm">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3 21h18"></path>
-                <path d="M5 21V7l7-4 7 4v14"></path>
-                <path d="M9 9h.01"></path>
-                <path d="M15 9h.01"></path>
-                <path d="M9 13h.01"></path>
-                <path d="M15 13h.01"></path>
-              </svg>
-            </div>
-            <h3>Documents Included</h3>
-            <p>Each package can include rollout summaries, internal policy drafts, and supporting documentation tied to the selected use cases.</p>
-          </article>
         </div>
-      </section>
+    </section>
 
-      <section id="assessment" class="assessment-section">
-        <div class="container assessment-wrap">
-          <div class="section-heading light">
-            <p class="eyebrow">Step 1 of 2</p>
-            <h2>Business Assessment</h2>
-            <p>
-              Share your context so the blueprint aligns to your team's bottlenecks, growth goals,
-              and operational risk profile.
-            </p>
-          </div>
-
-          <form id="assessment-form" class="assessment-card">
-            <div class="form-group">
-              <h3>Point of Contact</h3>
-              <div class="field-grid two-col">
-                <label class="field">
-                  <span>Full Name</span>
-                  <input id="clientName" name="clientName" type="text" required placeholder="e.g. Jordan Smith">
-                </label>
-                <label class="field">
-                  <span>Job Title</span>
-                  <input name="jobTitle" type="text" required placeholder="e.g. COO / Head of Marketing / Sales Director">
-                </label>
-                <label class="field">
-                  <span>Phone Number</span>
-                  <input name="phone" type="tel" required placeholder="(555) 123-4567">
-                </label>
-                <label class="field">
-                  <span>Email Address</span>
-                  <input name="email" type="email" required placeholder="jordan@company.com">
-                </label>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <h3>Organization Details</h3>
-              <div class="field-grid two-col">
-                <label class="field">
-                    <span>Company / Organization Name</span>
-                    <input id="orgName" name="orgName" type="text" required placeholder="e.g. Acme Logistics">
-                </label>
-                <label class="field">
-                    <span>Estimated Team Size for Training</span>
-                    <select name="participants" required>
-                      <option value="" selected disabled>Select size...</option>
-                      <option value="1-10">1 - 10 Team Members</option>
-                      <option value="11-50">11 - 50 Team Members</option>
-                      <option value="51-150">51 - 150 Team Members</option>
-                      <option value="150+">150+ (Company-Wide)</option>
-                    </select>
-                </label>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <h3>Challenges &amp; Goals</h3>
-              <div class="field-grid">
-                <label class="field">
-                  <span>What operational bottlenecks are you trying to solve?</span>
-                  <textarea name="challenges" required placeholder="e.g. proposal writing is slow, sales follow-up is inconsistent, teams are unsure how to use AI safely..."></textarea>
-                </label>
-                <label class="field">
-                  <span>What outcomes do you want from this training package?</span>
-                  <textarea name="goals" required placeholder="e.g. faster internal workflows, stronger brand content production, better sales follow-through, and a usable AI policy..."></textarea>
-                </label>
-                <label class="field budget-field">
-                  <span>Estimated Package Budget</span>
-                  <select name="budget" required>
-                    <option value="" selected disabled>Select budget range...</option>
-                    <option value="Under $5k">Under $5,000</option>
-                    <option value="$5k-$15k">$5,000 - $15,000</option>
-                    <option value="$15k-$30k">$15,000 - $30,000</option>
-                    <option value="$30k+">$30,000+</option>
-                    <option value="Not sure">Not sure yet / Needs assessment</option>
-                  </select>
-                </label>
-              </div>
-            </div>
-
-            <div class="form-footer">
-              <p class="form-note">Secure and confidential. This draft stores progress in your browser for now.</p>
-              <button class="primary-button" type="submit">Save &amp; Unlock Builder</button>
-            </div>
-          </form>
+    <section class="relative py-24 bg-brand-dark overflow-hidden border-y border-brand-darkerRed">
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80" alt="Minimalist Architectural Lines" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-luminosity" onerror="this.onerror=null; this.style.display='none';">
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <i data-lucide="layers" class="w-10 h-10 text-brand-rose mx-auto mb-6"></i>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Building the AI-First Enterprise.</h2>
+            <p class="text-brand-beige/80 text-lg">We don't just teach software. We build the operational frameworks, standard operating procedures, and safety boundaries your company needs to scale.</p>
         </div>
-      </section>
+    </section>
 
-      <section id="builder" class="builder-section is-locked">
-        <div id="builder-lock" class="lock-overlay">
-          <div class="lock-panel">
-            <div class="lock-icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M16 10V7a4 4 0 1 0-8 0v3"></path>
-                <rect x="4" y="10" width="16" height="10" rx="2"></rect>
-              </svg>
+    <section id="assessment" class="py-20 bg-brand-dark text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-red/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-rose/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+            <div class="lg:col-span-5 lg:sticky lg:top-28">
+                <span class="text-brand-rose font-bold tracking-widest uppercase text-xs">Consultative Approach</span>
+                <h2 class="text-4xl font-bold mt-2 mb-4">Business Assessment</h2>
+                <p class="text-brand-beige/80 text-sm mb-8 leading-relaxed">Help us understand your baseline details so we can guarantee strategic alignment and corporate safety for your quote.</p>
+                <div class="mb-10 relative rounded-2xl overflow-hidden shadow-lg border border-brand-darkerRed">
+                    <img src="https://images.unsplash.com/photo-1573165231977-3f0e27806045?auto=format&fit=crop&w=1000&q=80" alt="Executive 1-on-1 Consultation" class="w-full h-56 object-cover opacity-90 hover:opacity-100 transition-opacity" onerror="this.onerror=null; this.src='https://placehold.co/1000x400/4e0f11/e8dfd8?text=Executive+Strategy';">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-brand-dark to-transparent">
+                        <span class="text-[10px] font-bold text-white tracking-widest uppercase">Peer-to-Peer Strategy</span>
+                    </div>
+                </div>
+                <div class="relative space-y-8">
+                    <div class="absolute left-5 top-10 bottom-10 w-px bg-brand-red/30 hidden md:block"></div>
+                    <div class="flex gap-5 relative z-10">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-red flex items-center justify-center font-bold text-white shadow-lg shadow-brand-red/30 ring-4 ring-brand-dark">1</div>
+                        <div class="pt-2">
+                            <h4 class="text-lg font-bold text-white">Build your Blueprint.</h4>
+                            <p class="text-sm text-brand-beige/60 mt-1">Submit your details and interactively select your modules in the builder.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-5 relative z-10">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-darkerRed border border-brand-red flex items-center justify-center font-bold text-brand-rose ring-4 ring-brand-dark">2</div>
+                        <div class="pt-2">
+                            <h4 class="text-lg font-bold text-white">Review with an AI Strategist.</h4>
+                            <p class="text-sm text-brand-beige/60 mt-1">We'll reach out to fine-tune your roadmap and provide a custom enterprise quote.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-5 relative z-10">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-darkerRed border border-brand-red flex items-center justify-center font-bold text-brand-rose ring-4 ring-brand-dark">3</div>
+                        <div class="pt-2">
+                            <h4 class="text-lg font-bold text-white">Align with stakeholders.</h4>
+                            <p class="text-sm text-brand-beige/60 mt-1">Present a clear, risk-free transformation plan to your executive team to get buy-in.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h3>Training Builder Locked</h3>
-            <p>Please complete the Business Assessment above to unlock package configuration, delivery dates, and roadmap generation.</p>
-            <button class="secondary-button" type="button" data-scroll-target="assessment">Go to Step 1</button>
-          </div>
-        </div>
-
-        <div class="container builder-wrap">
-          <div class="section-heading">
-            <p class="eyebrow">Step 2 of 2</p>
-            <h2>Build Your Custom Training Package</h2>
-            <p>Select the business use cases you want Red Beans to deliver, then generate pricing and a shareable implementation roadmap.</p>
-          </div>
-
-          <div class="builder-layout">
-            <div class="stacks">
-              <section class="stack-section">
-                <div class="stack-heading">
-                  <span class="stack-badge">A</span>
-                  <h3>Security &amp; Operations</h3>
-                </div>
-                <div class="module-grid" id="stack-a"></div>
-              </section>
-
-              <section class="stack-section">
-                <div class="stack-heading">
-                  <span class="stack-badge">B</span>
-                  <h3>Team Productivity</h3>
-                </div>
-                <div class="module-grid" id="stack-b"></div>
-              </section>
-
-              <section class="stack-section">
-                <div class="stack-heading">
-                  <span class="stack-badge">C</span>
-                  <h3>Marketing &amp; Communications</h3>
-                </div>
-                <div class="module-grid" id="stack-c"></div>
-              </section>
-
-              <section class="stack-section">
-                <div class="stack-heading">
-                  <span class="stack-badge">D</span>
-                  <h3>Sales &amp; Growth</h3>
-                </div>
-                <div class="module-grid" id="stack-d"></div>
-              </section>
-
-              <section class="stack-section">
-                <div class="stack-heading">
-                  <span class="stack-badge">E</span>
-                  <h3>HR &amp; Talent</h3>
-                </div>
-                <div class="module-grid" id="stack-e"></div>
-              </section>
-
-              <section class="stack-section">
-                <div class="stack-heading">
-                  <span class="stack-badge">F</span>
-                  <h3>Executive &amp; Data</h3>
-                </div>
-                <div class="module-grid" id="stack-f"></div>
-              </section>
+            <div class="lg:col-span-7">
+                <form id="assessment-form" class="bg-white rounded-3xl p-8 md:p-10 shadow-2xl text-brand-dark">
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold border-b border-brand-beige pb-2 mb-6 text-brand-dark">Point of Contact</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="input-label">Full Name</label>
+                                <input type="text" id="clientName" name="clientName" class="input-field" placeholder="e.g. Jane Smith" required>
+                            </div>
+                            <div>
+                                <label class="input-label">Job Title</label>
+                                <input type="text" name="jobTitle" class="input-field" placeholder="e.g. VP of Operations" required>
+                            </div>
+                            <div>
+                                <label class="input-label">Phone Number</label>
+                                <input type="tel" name="phone" class="input-field" placeholder="(555) 123-4567" required>
+                            </div>
+                            <div>
+                                <label class="input-label">Email Address</label>
+                                <input type="email" name="email" class="input-field" placeholder="jane.smith@company.com" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold border-b border-brand-beige pb-2 mb-6 text-brand-dark">Company Details</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="input-label">Company Name</label>
+                                <input type="text" id="orgName" name="orgName" class="input-field" placeholder="e.g. Acme Corp" required>
+                            </div>
+                            <div>
+                                <label class="input-label">Est. Number of Participants</label>
+                                <select class="input-field" name="participants" required>
+                                    <option value="" disabled selected>Select size...</option>
+                                    <option value="1-10">1 - 10 Team Members</option>
+                                    <option value="11-50">11 - 50 Team Members</option>
+                                    <option value="51-150">51 - 150 Team Members</option>
+                                    <option value="150+">150+ (Company-Wide)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <p class="text-xs text-slate-500"><i data-lucide="lock" class="w-3 h-3 inline"></i> Secure and confidential.</p>
+                        <button type="submit" class="bg-brand-red text-white px-6 py-4 rounded-xl font-bold hover:bg-brand-darkerRed transition flex items-center justify-center gap-2 shadow-lg shadow-brand-rose/50">
+                            Continue to Builder <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </section>
 
-            <aside class="sidebar-card">
-              <div class="sidebar-heading">
-                <p>Live Budgeting</p>
-                <span id="sidebar-client-name"></span>
-              </div>
+    <section id="builder" class="py-16 bg-brand-beige">
+        <div class="max-w-7xl mx-auto px-6" id="builder-content">
+            <div class="text-center mb-12">
+                <span class="text-brand-red font-bold tracking-widest uppercase text-xs">Step 2 of 2</span>
+                <h2 class="text-3xl font-bold mt-2 mb-4 text-brand-dark">Build Your Interactive Curriculum</h2>
+                <p class="text-slate-600 text-sm">Define your goals, then select the specific modules below to automatically generate your project roadmap.</p>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-2/3 space-y-12">
+                    <div class="bg-white rounded-3xl p-8 md:p-10 shadow-lg shadow-brand-rose/10 border border-brand-beige">
+                        <div class="flex items-center gap-3 mb-6 border-b border-brand-beige pb-4">
+                            <i data-lucide="target" class="text-brand-red w-6 h-6"></i>
+                            <h3 class="text-xl font-bold text-brand-dark">Define Your Challenges & Goals</h3>
+                        </div>
+                        <div class="grid grid-cols-1 gap-6">
+                            <div>
+                                <label class="input-label">What complications are you currently facing with AI?</label>
+                                <textarea class="input-field min-h-[80px]" name="challenges" placeholder="e.g. Employees using unapproved tools, inefficient workflows, data privacy concerns..."></textarea>
+                            </div>
+                            <div>
+                                <label class="input-label">What are you looking to gain or learn from this training?</label>
+                                <textarea class="input-field min-h-[80px]" name="goals" placeholder="e.g. We want a clear internal policy, automated reporting, and to train our sales team..."></textarea>
+                            </div>
+                            <div>
+                                <label class="input-label">Estimated Package Budget</label>
+                                <select class="input-field" name="budget">
+                                    <option value="" disabled selected>Select budget range...</option>
+                                    <option value="Under $5k">Under $5,000</option>
+                                    <option value="$5k-$15k">$5,000 - $15,000</option>
+                                    <option value="$15k-$30k">$15,000 - $30,000</option>
+                                    <option value="$30k+">$30,000+</option>
+                                    <option value="Not sure">Not sure yet / Needs assessment</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
-              <div id="selected-list" class="selected-list">
-                <div class="empty-state">
-                  Select modules on the left to build your estimate.
+                    <div id="stack-sections" class="space-y-12"></div>
                 </div>
-              </div>
 
-              <div class="sidebar-total">
-                <div>
-                  <span>Total Investment</span>
-                  <strong id="total-price">$0</strong>
+                <div class="lg:w-1/3">
+                    <div class="sticky top-28 bg-white p-8 rounded-3xl shadow-xl border border-brand-beige">
+                        <div class="flex flex-col mb-6">
+                            <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400">Your Blueprint</h3>
+                            <span id="sidebar-client-name" class="text-xs font-bold text-brand-red mt-1">Custom Implementation</span>
+                        </div>
+                        <div class="space-y-4 mb-8" id="selected-list">
+                            <div class="text-slate-400 italic text-sm py-4 border-b border-dashed border-brand-rose/30">
+                                Select modules on the left to build your roadmap...
+                            </div>
+                        </div>
+                        <div class="pt-6 border-t border-brand-beige">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Package Status</span>
+                            <div class="text-lg font-bold text-brand-dark flex items-center gap-2">
+                                <i data-lucide="calculator" class="w-5 h-5 text-brand-red"></i> Custom Enterprise Quote
+                            </div>
+                        </div>
+                        <button id="finalize-btn" disabled class="w-full mt-8 py-4 bg-slate-200 text-slate-500 rounded-xl font-bold transition flex items-center justify-center gap-2 cursor-not-allowed">
+                            View Project Roadmap <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
                 </div>
-              </div>
-
-              <button id="finalize-btn" class="primary-button full-width is-disabled" type="button" disabled>
-                Finalize My Package
-              </button>
-            </aside>
-          </div>
+            </div>
         </div>
-      </section>
-    </main>
-  </div>
+    </section>
 
-  <div id="chart-modal" class="modal hidden" aria-hidden="true">
-    <div class="modal-backdrop" data-close-modal="true"></div>
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-org-title">
-      <button class="modal-close" id="close-chart" type="button" aria-label="Close roadmap">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M18 6 6 18"></path>
-          <path d="m6 6 12 12"></path>
-        </svg>
-      </button>
-
-      <div class="modal-header">
-        <p class="modal-pill">Confirmed Roadmap</p>
-        <h2 id="modal-org-title">Your AI Adoption Project Chart</h2>
-        <p>Customized training timeline based on your selected business priorities.</p>
-      </div>
-
-      <div class="phase-grid">
-        <article class="phase-card">
-          <p class="phase-label">Phase 1</p>
-          <h3>Discovery</h3>
-          <p>Assessment of business bottlenecks, team readiness, and AI adoption priorities across your operation.</p>
-        </article>
-
-        <article class="phase-card active">
-          <div class="phase-active-row">
-            <p class="phase-label">Phase 2</p>
-            <span>Active Workshops</span>
-          </div>
-          <h3>Immersion</h3>
-          <p>Live Red Beans-led workshops and implementation sessions tied directly to your selected package.</p>
-          <ul id="phase-2-deliverables" class="deliverables-list"></ul>
-        </article>
-
-        <article class="phase-card">
-          <p class="phase-label">Phase 3</p>
-          <h3>Enablement Review</h3>
-          <p>Evaluation of adoption, workflow efficiency, and next-step operational documentation after delivery.</p>
-        </article>
-      </div>
-
-      <div class="chart-shell">
-        <div class="chart-header">
-          <div>Training Module</div>
-          <div class="chart-weeks">
-            <span>Week 1</span>
-            <span>Week 2</span>
-            <span>Week 3</span>
-            <span>Week 4</span>
-          </div>
+    <section id="faq" class="py-20 bg-white border-t border-brand-beige">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-brand-dark mb-4">Frequently Asked Questions</h2>
+                <p class="text-slate-600 text-sm">Common questions from enterprise leaders about our methodology and delivery.</p>
+            </div>
+            <div class="space-y-4">
+                <div class="border border-brand-beige rounded-2xl bg-slate-50 overflow-hidden">
+                    <button class="w-full text-left px-6 py-5 font-bold text-brand-dark flex justify-between items-center focus:outline-none" onclick="toggleFaq('faq-1')">
+                        <span class="pr-4">1. Will our proprietary company data be used to train public AI models?</span>
+                        <i data-lucide="chevron-down" id="icon-faq-1" class="text-brand-red w-5 h-5 flex-shrink-0 transition-transform duration-200"></i>
+                    </button>
+                    <div id="faq-1" class="hidden px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-brand-beige/50 pt-4">
+                        Absolutely not. Data security is the foundation of our methodology. We train your teams on closed-loop and enterprise-grade AI frameworks with strict data hygiene protocols.
+                    </div>
+                </div>
+                <div class="border border-brand-beige rounded-2xl bg-slate-50 overflow-hidden">
+                    <button class="w-full text-left px-6 py-5 font-bold text-brand-dark flex justify-between items-center focus:outline-none" onclick="toggleFaq('faq-2')">
+                        <span class="pr-4">2. We already have enterprise AI licenses. Why do we need Red Beans?</span>
+                        <i data-lucide="chevron-down" id="icon-faq-2" class="text-brand-red w-5 h-5 flex-shrink-0 transition-transform duration-200"></i>
+                    </button>
+                    <div id="faq-2" class="hidden px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-brand-beige/50 pt-4">
+                        Buying licenses is not the same thing as adoption. We build the specific SOPs, use-cases, and guardrails that help teams actually use those tools safely and profitably.
+                    </div>
+                </div>
+                <div class="border border-brand-beige rounded-2xl bg-slate-50 overflow-hidden">
+                    <button class="w-full text-left px-6 py-5 font-bold text-brand-dark flex justify-between items-center focus:outline-none" onclick="toggleFaq('faq-3')">
+                        <span class="pr-4">3. How much time does the training require from our team?</span>
+                        <i data-lucide="chevron-down" id="icon-faq-3" class="text-brand-red w-5 h-5 flex-shrink-0 transition-transform duration-200"></i>
+                    </button>
+                    <div id="faq-3" class="hidden px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-brand-beige/50 pt-4">
+                        We design delivery for high-velocity teams. The heavy lift happens in discovery, and workshop sessions are built to return time to the team almost immediately.
+                    </div>
+                </div>
+                <div class="border border-brand-beige rounded-2xl bg-slate-50 overflow-hidden">
+                    <button class="w-full text-left px-6 py-5 font-bold text-brand-dark flex justify-between items-center focus:outline-none" onclick="toggleFaq('faq-4')">
+                        <span class="pr-4">4. Are these trainings generic or tailored to our industry and workflows?</span>
+                        <i data-lucide="chevron-down" id="icon-faq-4" class="text-brand-red w-5 h-5 flex-shrink-0 transition-transform duration-200"></i>
+                    </button>
+                    <div id="faq-4" class="hidden px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-brand-beige/50 pt-4">
+                        They are tailored. We use your bottlenecks, team structure, and sanitized real-world processes to shape what gets delivered.
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="chart-rows" class="chart-rows"></div>
-      </div>
+    </section>
 
-      <div class="modal-footer">
-        <p>A custom package summary will be sent to the email provided in Step 1.</p>
-        <div class="modal-actions">
-          <button id="download-snapshot-btn" class="secondary-button" type="button">Download PDF Snapshot</button>
-          <button id="request-proposal-btn" class="primary-button" type="button">Email Results Summary</button>
+    <footer class="py-16 bg-brand-dark text-brand-beige/80 border-t border-brand-darkerRed">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+                <div class="flex items-center space-x-3 mb-6">
+                    <img src="RedStride AI.jpg" alt="Red Beans AI Logo" class="w-10 h-10 rounded-xl shadow-lg shadow-brand-rose/50 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/100x100/800101/e8dfd8?text=RB';">
+                    <span class="text-xl font-bold tracking-tight text-white">Red Beans <span class="text-brand-red">AI</span></span>
+                </div>
+                <p class="text-sm leading-relaxed mb-6 pr-4">Bridging the gap between corporate strategy and AI execution. We empower your workforce to scale efficiently and securely.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6">Company</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#trust" class="hover:text-brand-red transition">About Us</a></li>
+                    <li><a href="#builder" class="hover:text-brand-red transition">Curriculum Packages</a></li>
+                    <li><a href="#faq" class="hover:text-brand-red transition">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6">Connect</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><a href="https://redbeans.io/aitraining" class="hover:text-brand-red transition flex items-center gap-3"><i data-lucide="globe" class="w-4 h-4 text-brand-red"></i> redbeans.io/aitraining</a></li>
+                    <li><a href="#" class="hover:text-brand-red transition flex items-center gap-3"><i data-lucide="linkedin" class="w-4 h-4 text-brand-red"></i> LinkedIn</a></li>
+                    <li><a href="#" class="hover:text-brand-red transition flex items-center gap-3"><i data-lucide="facebook" class="w-4 h-4 text-brand-red"></i> Facebook</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <p id="submission-status" class="submission-status" aria-live="polite"></p>
+        <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-brand-beige/10 text-center text-xs">
+            <p>&copy; 2026 Red Beans Training. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="chat-window" class="hidden w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-brand-beige mb-4 overflow-hidden transform transition-all origin-bottom-right">
+            <div class="bg-brand-dark p-4 flex items-center justify-between text-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-brand-red flex items-center justify-center font-bold text-xs border border-brand-rose">R</div>
+                    <div>
+                        <h4 class="font-bold text-sm">Reed</h4>
+                        <p class="text-[10px] text-brand-beige/70 uppercase tracking-widest">AI Strategist</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-brand-beige hover:text-white transition"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <div id="chat-messages" class="h-80 p-4 overflow-y-auto bg-slate-50 flex flex-col gap-3 text-sm">
+                <div class="flex items-start gap-2 max-w-[85%]">
+                    <div class="w-6 h-6 rounded-full bg-brand-red flex-shrink-0 flex items-center justify-center font-bold text-white text-[10px]">R</div>
+                    <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-sm border border-slate-200 text-slate-700">
+                        Hello. I am Reed, the Red Beans AI Strategist. Do you have any questions about our corporate training blueprints?
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 bg-white border-t border-brand-beige flex gap-2">
+                <input type="text" id="chat-input" placeholder="Ask a question..." class="flex-1 bg-slate-50 border border-slate-200 rounded-lg px-3 text-sm focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red/20" onkeypress="handleChatKeyPress(event)">
+                <button onclick="sendMessage()" class="bg-brand-red text-white p-2 rounded-lg hover:bg-brand-darkerRed transition flex-shrink-0">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+        <button id="chat-trigger" onclick="toggleChat()" class="bg-brand-red text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-brand-red/30 hover:bg-brand-darkerRed transition hover:scale-105">
+            <i data-lucide="message-square" class="w-6 h-6"></i>
+        </button>
     </div>
-  </div>
 
-  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-  <script src="./app.js"></script>
+    <div id="chart-modal" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-md z-[100] hidden overflow-y-auto">
+        <div class="max-w-6xl mx-auto my-12 px-6">
+            <div class="bg-white rounded-[2rem] p-10 shadow-2xl relative">
+                <button onclick="closeChart()" class="absolute top-8 right-8 text-slate-400 hover:text-brand-dark transition bg-brand-beige/50 rounded-full p-2">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+                <div class="mb-10">
+                    <span class="px-4 py-1.5 bg-brand-rose/10 text-brand-red text-xs font-bold rounded-full uppercase tracking-widest">Confirmed Roadmap</span>
+                    <h2 class="text-4xl font-bold mt-4 text-brand-dark" id="modal-org-title">Your AI Adoption Project Chart</h2>
+                    <p class="text-slate-500 mt-2">Customized transformation timeline based on your selected stack.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-brand-beige/30 p-6 rounded-2xl border border-brand-beige relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 opacity-5"><i data-lucide="search" class="w-32 h-32"></i></div>
+                        <div class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-2">Phase 1</div>
+                        <h4 class="font-bold text-lg mb-2 text-brand-dark">Discovery</h4>
+                        <p class="text-sm text-slate-600">Pre-training assessment of current tech stack, workflow bottlenecks, and corporate goal alignment.</p>
+                    </div>
+                    <div class="bg-brand-rose/10 p-6 rounded-2xl border border-brand-rose/30 ring-1 ring-brand-rose/50 relative shadow-sm">
+                        <div class="text-brand-red font-bold text-xs uppercase tracking-widest mb-2 flex items-center justify-between">
+                            Phase 2 <span class="bg-brand-red text-white px-2 py-0.5 rounded text-[10px]">ACTIVE WORKSHOPS</span>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2 text-brand-darkerRed">Immersion</h4>
+                        <p class="text-sm text-slate-700 mb-4">Live and interactive workshop dates for your customized curriculum:</p>
+                        <ul id="phase-2-deliverables" class="text-sm font-semibold text-brand-darkerRed space-y-2 list-disc pl-5"></ul>
+                    </div>
+                    <div class="bg-brand-beige/30 p-6 rounded-2xl border border-brand-beige relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 opacity-5"><i data-lucide="bar-chart-3" class="w-32 h-32"></i></div>
+                        <div class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-2">Phase 3</div>
+                        <h4 class="font-bold text-lg mb-2 text-brand-dark">Review</h4>
+                        <p class="text-sm text-slate-600">Evaluation of time saved, employee adoption rates, and post-training efficiency outcomes.</p>
+                    </div>
+                </div>
+                <div class="overflow-x-auto rounded-xl border border-brand-beige">
+                    <div class="min-w-[800px] bg-white p-8 chart-grid">
+                        <div class="flex border-b border-brand-beige pb-4 mb-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                            <div class="w-1/3">Training Module</div>
+                            <div class="w-2/3 flex justify-between px-4">
+                                <span>Week 1</span>
+                                <span>Week 2</span>
+                                <span>Week 3</span>
+                                <span>Week 4</span>
+                            </div>
+                        </div>
+                        <div id="chart-rows" class="space-y-6"></div>
+                    </div>
+                </div>
+                <div class="mt-12 border-t border-brand-beige pt-8 space-y-5">
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <p class="text-sm text-slate-500"><i data-lucide="info" class="w-4 h-4 inline text-brand-red mb-1"></i> A Red Beans Strategist will reach out with a custom quote based on your selection.</p>
+                        <button id="submit-quote-btn" class="py-4 px-8 bg-brand-red text-white rounded-xl font-bold shadow-lg hover:shadow-brand-rose/50 transition flex items-center gap-2">
+                            Submit for Custom Quote <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <div class="flex flex-col gap-3 sm:flex-row">
+                        <button id="download-snapshot-btn" class="py-4 px-6 bg-brand-dark text-white rounded-xl font-bold transition flex items-center justify-center gap-2">
+                            Download PDF Snapshot <i data-lucide="download" class="w-4 h-4"></i>
+                        </button>
+                        <button id="request-proposal-btn" class="py-4 px-6 bg-white border border-brand-beige text-brand-dark rounded-xl font-bold transition flex items-center justify-center gap-2">
+                            Email Results Summary <i data-lucide="mail" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    <p id="submission-status" class="text-sm text-slate-500" aria-live="polite"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="./app.js"></script>
 </body>
 </html>

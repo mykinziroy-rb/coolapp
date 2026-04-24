@@ -1,219 +1,234 @@
-const modules = {
+const moduleCatalog = {
   policy: {
-    id: "policy",
     title: "Corporate AI Policy",
-    price: 2500,
     stack: "A",
-    description: "Draft company handbooks for acceptable AI use across teams.",
+    stackTitle: "Security & Operational Stack",
+    icon: "shield-check",
+    iconWrap: "bg-brand-rose/10",
+    iconColor: "text-brand-red",
+    description: "Draft company handbooks for acceptable and secure AI use.",
+    audience: "CISO, VP of HR, Chief Legal Officer.",
+    pain: "Employees are using unapproved shadow AI tools, exposing proprietary company data and creating legal liabilities.",
     details: [
-      "Custom acceptable-use guidelines and definitions",
-      "Internal approval and escalation framework",
-      "Leadership-ready policy rollout deck",
-      "Quarterly policy review recommendations"
+      "Custom usage and compliance guidelines",
+      "Security versus co-creation frameworks",
+      "Employee onboarding presentation",
+      "Annual policy update review"
     ],
     start: 5,
     width: 30,
-    color: "#800101",
-    iconColor: "#800101",
-    iconBg: "rgba(128, 1, 1, 0.12)",
-    icon: "shield"
+    color: "bg-brand-red"
   },
   admin: {
-    id: "admin",
     title: "Operations Automator",
-    price: 1800,
     stack: "A",
-    description: "Streamline internal workflows, email handling, and reporting operations.",
+    stackTitle: "Security & Operational Stack",
+    icon: "cog",
+    iconWrap: "bg-blue-50",
+    iconColor: "text-blue-600",
+    description: "Streamline scheduling, email triage, and reporting workflows.",
+    audience: "COO, VP of Operations, PMO.",
+    pain: "Teams are drowning in inbox triage, meeting notes, and manual reporting, leaving no time for deep, strategic work.",
     details: [
-      "Workflow audit and automation opportunities",
-      "Email triage and reporting prompt library",
+      "Email triage prompt library",
+      "Report summarization templates",
       "Meeting note and action item automations",
-      "Red Beans-led operations training session"
+      "2-hour ops staff training workshop"
     ],
     start: 15,
     width: 20,
-    color: "#2463d4",
-    iconColor: "#2463d4",
-    iconBg: "rgba(59, 130, 246, 0.14)",
-    icon: "gear"
+    color: "bg-blue-500"
   },
   safety: {
-    id: "safety",
     title: "Enterprise Data Shield",
-    price: 2000,
     stack: "A",
-    description: "Protect proprietary company and client data from leaking into public LLMs.",
+    stackTitle: "Security & Operational Stack",
+    icon: "lock",
+    iconWrap: "bg-emerald-50",
+    iconColor: "text-emerald-600",
+    description: "Protecting proprietary company info in a generative world.",
+    audience: "CIO, IT Directors, Compliance Officers.",
+    pain: "Fear of SOC2 violations and client data leakage is preventing the company from adopting AI tools that competitors are using.",
     details: [
       "AI vendor vetting checklist",
-      "Confidential data handling guide",
-      "Internal risk classification template",
-      "Safe prompt and tooling standards"
+      "PII and client data anonymization guide",
+      "SOC2 compliance alignment mapping",
+      "Corporate risk assessment tool"
     ],
     start: 0,
-    width: 12,
-    color: "#0f8b61",
-    iconColor: "#0f8b61",
-    iconBg: "rgba(16, 185, 129, 0.14)",
-    icon: "lock"
+    width: 10,
+    color: "bg-emerald-500"
   },
   feedback: {
-    id: "feedback",
     title: "Copilot Mastery",
-    price: 2800,
     stack: "B",
-    description: "Train teams to use AI to dramatically increase daily administrative output.",
+    stackTitle: "Team Productivity Stack",
+    icon: "briefcase",
+    iconWrap: "bg-purple-50",
+    iconColor: "text-purple-600",
+    description: "Train teams to use AI to multiply daily administrative output.",
+    audience: "Department Heads, Managers, General Staff.",
+    pain: "The company bought expensive enterprise AI licenses, but usage is virtually zero because teams don't know how to integrate it into daily workflows.",
     details: [
-      "Role-based prompt training for daily work",
-      "Task acceleration playbooks for teams",
-      "Meeting, writing, and planning workflows",
-      "Hands-on productivity workshop"
+      "Document drafting prompt frameworks",
+      "Advanced data synthesis tutorials",
+      "Cross-department productivity strategy",
+      "Microsoft Copilot / ChatGPT integration"
     ],
     start: 40,
     width: 30,
-    color: "#7c3aed",
-    iconColor: "#7c3aed",
-    iconBg: "rgba(124, 58, 237, 0.12)",
-    icon: "message"
+    color: "bg-purple-500"
   },
   bots: {
-    id: "bots",
     title: "Custom Knowledge Bots",
-    price: 3500,
     stack: "B",
-    description: "Build internal chatbots trained on your company SOPs and knowledge base.",
+    stackTitle: "Team Productivity Stack",
+    icon: "bot",
+    iconWrap: "bg-orange-50",
+    iconColor: "text-orange-600",
+    description: "Internal chat agents trained on your specific company SOPs.",
+    audience: "Director of Knowledge Management, Ops Leads.",
+    pain: "Institutional knowledge is buried in disjointed PDFs and Confluence pages, causing staff to waste hours searching for basic internal answers.",
     details: [
-      "Custom internal bot use-case design",
-      "SOP and knowledge-base ingestion planning",
+      "1 custom trained internal assistant",
+      "SOP and knowledge base ingestion",
       "AI guardrails and access boundaries",
-      "Deployment and handoff guide"
+      "Manager deployment and update handbook"
     ],
     start: 50,
     width: 40,
-    color: "#d97706",
-    iconColor: "#d97706",
-    iconBg: "rgba(217, 119, 6, 0.12)",
-    icon: "bot"
+    color: "bg-orange-500"
   },
   brand: {
-    id: "brand",
     title: "Brand Content Engine",
-    price: 2200,
     stack: "C",
-    description: "Scale social media, newsletters, and copywriting with AI-supported workflows.",
+    stackTitle: "Marketing & Comms Stack",
+    icon: "sparkles",
+    iconWrap: "bg-amber-50",
+    iconColor: "text-amber-600",
+    description: "Scale social media, newsletters, and marketing copywriting.",
+    audience: "CMO, VP of Marketing, Content Directors.",
+    pain: "Content demands are scaling faster than headcount. The team is burning out trying to produce multi-channel copy while maintaining brand voice.",
     details: [
-      "Brand voice tuning profiles",
-      "Campaign content prompt library",
-      "Newsletter and social templates",
-      "Marketing workflow alignment session"
+      "Brand voice fine-tuning profiles",
+      "Custom image generation prompt guide",
+      "Campaign and ad copy templates",
+      "1-hour marketing team alignment workshop"
     ],
     start: 30,
     width: 25,
-    color: "#b86d06",
-    iconColor: "#b86d06",
-    iconBg: "rgba(245, 158, 11, 0.16)",
-    icon: "sparkles"
+    color: "bg-amber-500"
   },
   video: {
-    id: "video",
-    title: "AI Video & Communications",
-    price: 4000,
+    title: "AI Video & Avatars",
     stack: "C",
-    description: "Create digital avatars for internal training or external communications.",
+    stackTitle: "Marketing & Comms Stack",
+    icon: "video",
+    iconWrap: "bg-indigo-50",
+    iconColor: "text-indigo-600",
+    description: "Create digital avatars for corporate training or marketing.",
+    audience: "VP of Comms, L&D Directors, Marketing Leads.",
+    pain: "Producing high-quality video for internal training or external social media is too expensive, slow, and requires complex studio setups.",
     details: [
       "AI avatar and studio creation guide",
-      "Voice and likeness governance framework",
-      "Script-to-video workflow",
-      "Captioning and communications distribution setup"
+      "Voice cloning ethical compliance framework",
+      "End-to-end script-to-video workflow",
+      "Automated multi-language localization setup"
     ],
     start: 60,
     width: 35,
-    color: "#4f46e5",
-    iconColor: "#4f46e5",
-    iconBg: "rgba(99, 102, 241, 0.14)",
-    icon: "video"
+    color: "bg-indigo-500"
   },
   grants: {
-    id: "grants",
     title: "RFP & Proposal AI",
-    price: 3200,
     stack: "D",
-    description: "Train models on past successful proposals to accelerate new bids and RFP responses.",
+    stackTitle: "Sales & Growth Stack",
+    icon: "file-signature",
+    iconWrap: "bg-teal-50",
+    iconColor: "text-teal-600",
+    description: "Train models on successful past proposals to accelerate new bids.",
+    audience: "VP of Sales, Sales Engineers, Bid Managers.",
+    pain: "Answering RFPs is soul-crushing, takes weeks, and pulls top salespeople away from actually closing deals.",
     details: [
-      "Proposal structuring prompt system",
-      "Past-response ingestion planning",
-      "Approval-ready drafting workflows",
-      "Bid and proposal training workshop"
+      "Proposal structuring prompts",
+      "Pricing narrative generation templates",
+      "Past-bid data ingestion and training setup",
+      "1-hour sales engineering workshop"
     ],
     start: 20,
     width: 25,
-    color: "#0f766e",
-    iconColor: "#0f766e",
-    iconBg: "rgba(20, 184, 166, 0.14)",
-    icon: "document"
+    color: "bg-teal-500"
   },
   scholarship: {
-    id: "scholarship",
     title: "CRM & Lead AI",
-    price: 2600,
     stack: "D",
-    description: "Automate lead triage, CRM hygiene, and outreach tracking for sales teams.",
+    stackTitle: "Sales & Growth Stack",
+    icon: "trending-up",
+    iconWrap: "bg-pink-50",
+    iconColor: "text-pink-600",
+    description: "Automate lead triage, CRM data hygiene, and outbound tracking.",
+    audience: "CRO, Sales Operations Directors.",
+    pain: "Sales reps hate data entry. The CRM is a mess of unqualified leads, and automated outreach sounds robotic, ruining conversion rates.",
     details: [
-      "Lead triage workflow design",
-      "CRM cleanup and tagging logic",
-      "Sales outreach template system",
-      "Follow-up tracking recommendations"
+      "Lead qualification algorithms",
+      "Sales inbox triage and sorting frameworks",
+      "Automated outreach and follow-up templates",
+      "CRM integration optimization session"
     ],
     start: 45,
     width: 30,
-    color: "#db2777",
-    iconColor: "#db2777",
-    iconBg: "rgba(219, 39, 119, 0.12)",
-    icon: "award"
+    color: "bg-pink-500"
   },
   recruiting: {
-    id: "recruiting",
     title: "AI Recruiting & Sourcing",
-    price: 2900,
     stack: "E",
-    description: "Speed up sourcing, candidate research, and screening workflows with AI-assisted recruiting systems.",
+    stackTitle: "HR & Talent Stack",
+    icon: "search",
+    iconWrap: "bg-sky-50",
+    iconColor: "text-sky-600",
+    description: "Accelerate recruiting, sourcing, and candidate research workflows.",
+    audience: "CHRO, Talent Acquisition Leads, Recruiting Managers.",
+    pain: "Recruiters are buried in repetitive sourcing work and struggle to move strong candidates through the funnel quickly.",
     details: [
       "AI-assisted sourcing workflow design",
       "Candidate research and screening prompts",
       "Recruiter outreach templates",
       "Talent pipeline operating guide"
     ],
-    start: 18,
-    width: 24,
-    color: "#2563eb",
-    iconColor: "#2563eb",
-    iconBg: "rgba(37, 99, 235, 0.12)",
-    icon: "briefcase"
+    start: 10,
+    width: 22,
+    color: "bg-sky-500"
   },
   onboarding: {
-    id: "onboarding",
     title: "Automated Onboarding",
-    price: 3100,
     stack: "E",
-    description: "Create smoother employee onboarding with automated training content, checklists, and role-based enablement.",
+    stackTitle: "HR & Talent Stack",
+    icon: "clipboard-check",
+    iconWrap: "bg-violet-50",
+    iconColor: "text-violet-600",
+    description: "Automate onboarding content, checklists, and role-based enablement.",
+    audience: "People Ops, HR Business Partners, L&D Leads.",
+    pain: "New hire onboarding is inconsistent, manual, and overly dependent on busy managers to carry the experience.",
     details: [
       "Onboarding workflow mapping",
       "Role-based onboarding content prompts",
       "Checklist and document automation setup",
       "Manager handoff and enablement guide"
     ],
-    start: 28,
-    width: 26,
-    color: "#7c3aed",
-    iconColor: "#7c3aed",
-    iconBg: "rgba(124, 58, 237, 0.12)",
-    icon: "clipboard"
+    start: 24,
+    width: 24,
+    color: "bg-violet-500"
   },
   strategy: {
-    id: "strategy",
     title: "C-Suite AI Strategy",
-    price: 6500,
     stack: "F",
-    description: "Executive-level strategy module for prioritizing AI adoption, governance, and investment across the business.",
+    stackTitle: "Executive & Data Stack",
+    icon: "briefcase",
+    iconWrap: "bg-brand-rose/10",
+    iconColor: "text-brand-red",
+    description: "High-ticket executive strategy for AI adoption, governance, and investment decisions.",
+    audience: "CEO, COO, CFO, Board and Executive Teams.",
+    pain: "Leadership knows AI matters, but lacks a unified plan for where to invest, how to govern it, and what should happen first.",
     details: [
       "Executive AI opportunity mapping",
       "Risk, governance, and investment framework",
@@ -221,18 +236,19 @@ const modules = {
       "Strategic rollout summary document"
     ],
     start: 6,
-    width: 32,
-    color: "#4e0f11",
-    iconColor: "#4e0f11",
-    iconBg: "rgba(78, 15, 17, 0.12)",
-    icon: "briefcase"
+    width: 30,
+    color: "bg-brand-red"
   },
   finance: {
-    id: "finance",
     title: "Financial Data Synthesizer",
-    price: 7200,
     stack: "F",
-    description: "Secure spreadsheet analysis and financial synthesis workflows for high-value reporting and decision support.",
+    stackTitle: "Executive & Data Stack",
+    icon: "bar-chart-3",
+    iconWrap: "bg-emerald-50",
+    iconColor: "text-emerald-600",
+    description: "Secure spreadsheet analysis and financial synthesis for high-value reporting.",
+    audience: "CFO, FP&A Leaders, Finance Directors.",
+    pain: "Finance teams spend too much time combining spreadsheets, summarizing results, and pressure-testing scenarios under tight deadlines.",
     details: [
       "Secure spreadsheet analysis workflow",
       "Financial reporting synthesis prompts",
@@ -241,324 +257,325 @@ const modules = {
     ],
     start: 42,
     width: 34,
-    color: "#0f766e",
-    iconColor: "#0f766e",
-    iconBg: "rgba(15, 118, 110, 0.12)",
-    icon: "chart"
+    color: "bg-emerald-500"
   }
 };
 
-const selectedModules = new Set();
-const state = {
-  unlocked: false,
-  profile: null
-};
-
-const stackMounts = {
-  A: document.getElementById("stack-a"),
-  B: document.getElementById("stack-b"),
-  C: document.getElementById("stack-c"),
-  D: document.getElementById("stack-d"),
-  E: document.getElementById("stack-e"),
-  F: document.getElementById("stack-f")
-};
-
-const assessmentForm = document.getElementById("assessment-form");
-const builder = document.getElementById("builder");
-const sidebarName = document.getElementById("sidebar-client-name");
-const totalPrice = document.getElementById("total-price");
-const selectedList = document.getElementById("selected-list");
-const finalizeButton = document.getElementById("finalize-btn");
-const modal = document.getElementById("chart-modal");
-const modalTitle = document.getElementById("modal-org-title");
-const phaseDeliverables = document.getElementById("phase-2-deliverables");
-const chartRows = document.getElementById("chart-rows");
-const navLockIcon = document.getElementById("nav-lock-icon");
-const requestProposalButton = document.getElementById("request-proposal-btn");
-const closeChartButton = document.getElementById("close-chart");
-const downloadSnapshotButton = document.getElementById("download-snapshot-btn");
-const submissionStatus = document.getElementById("submission-status");
-const RESULTS_EMAILS = [
-  "david-ceo@redbeans.io",
-  "mykinzi.roy@redbeans.io"
+const stackOrder = [
+  { key: "A", title: "Security & Operational Stack" },
+  { key: "B", title: "Team Productivity Stack" },
+  { key: "C", title: "Marketing & Comms Stack" },
+  { key: "D", title: "Sales & Growth Stack" },
+  { key: "E", title: "HR & Talent Stack" },
+  { key: "F", title: "Executive & Data Stack" }
 ];
+
+const resultsEmails = ["david-ceo@redbeans.io", "mykinzi.roy@redbeans.io"];
+const selected = new Set();
+const state = { profile: null };
+
+const stackSections = document.getElementById("stack-sections");
+const assessmentForm = document.getElementById("assessment-form");
+const selectedList = document.getElementById("selected-list");
+const finalizeBtn = document.getElementById("finalize-btn");
+const sidebarName = document.getElementById("sidebar-client-name");
+const modalTitle = document.getElementById("modal-org-title");
+const modal = document.getElementById("chart-modal");
+const chartRows = document.getElementById("chart-rows");
+const phase2Deliverables = document.getElementById("phase-2-deliverables");
+const submissionStatus = document.getElementById("submission-status");
+const quoteButton = document.getElementById("submit-quote-btn");
+const downloadButton = document.getElementById("download-snapshot-btn");
+const emailButton = document.getElementById("request-proposal-btn");
+const orgNameInput = document.getElementById("orgName");
 
 function formatCurrency(value) {
   return `$${value.toLocaleString()}`;
 }
 
-function renderIcon(name) {
-  const paths = {
-    shield: '<path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3Z"></path><path d="m9.5 12 1.8 1.8L15 10.2"></path>',
-    gear: '<path d="M12 8.5A3.5 3.5 0 1 0 12 15.5A3.5 3.5 0 1 0 12 8.5Z"></path><path d="m19.4 15-.9 1.6-1.8-.1a6.8 6.8 0 0 1-1.2 1l.2 1.8-1.7 1-1.4-1.1a7 7 0 0 1-1.5 0l-1.4 1.1-1.7-1 .2-1.8a6.8 6.8 0 0 1-1.2-1l-1.8.1-.9-1.6 1.2-1.3a7 7 0 0 1 0-1.7L2.6 11l.9-1.6 1.8.1a6.8 6.8 0 0 1 1.2-1L6.3 6.7l1.7-1 1.4 1.1a7 7 0 0 1 1.5 0l1.4-1.1 1.7 1-.2 1.8a6.8 6.8 0 0 1 1.2 1l1.8-.1.9 1.6-1.2 1.3a7 7 0 0 1 0 1.7Z"></path>',
-    lock: '<path d="M16 10V7a4 4 0 1 0-8 0v3"></path><rect x="4" y="10" width="16" height="10" rx="2"></rect>',
-    message: '<path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v8A1.5 1.5 0 0 1 18.5 15H8l-4 4v-13.5Z"></path>',
-    bot: '<rect x="7" y="8" width="10" height="8" rx="2"></rect><path d="M12 4v4"></path><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M8 18h8"></path>',
-    sparkles: '<path d="m12 3 1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7L12 3Z"></path><path d="m18 15 .9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15Z"></path><path d="m5 14 .7 1.8L7.5 16l-1.8.7L5 18.5l-.7-1.8L2.5 16l1.8-.7L5 14Z"></path>',
-    video: '<rect x="3" y="6" width="14" height="12" rx="2"></rect><path d="m17 10 4-2v8l-4-2"></path>',
-    document: '<path d="M8 3h6l4 4v14H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path><path d="M14 3v5h5"></path><path d="M10 13h4"></path><path d="M10 17h4"></path>',
-    award: '<circle cx="12" cy="8" r="4"></circle><path d="m8.5 14.5-1 6L12 18l4.5 2.5-1-6"></path>',
-    briefcase: '<path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M3 12h18"></path>',
-    clipboard: '<rect x="7" y="4" width="10" height="17" rx="2"></rect><path d="M9 4.5h6"></path><path d="M9 9h6"></path><path d="M9 13h6"></path><path d="M9 17h4"></path>',
-    chart: '<path d="M4 19h16"></path><path d="M7 16V9"></path><path d="M12 16V5"></path><path d="M17 16v-7"></path>'
-  };
-
-  return `
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      ${paths[name] || paths.sparkles}
-    </svg>
-  `;
+function safeIcon(name) {
+  return `<i data-lucide="${name}" class="w-5 h-5"></i>`;
 }
 
-function buildModuleCard(module) {
-  const article = document.createElement("article");
-  article.className = "module-card";
-  article.dataset.moduleId = module.id;
+function updateSidebarName() {
+  const orgName = orgNameInput.value.trim();
+  sidebarName.textContent = orgName ? `Prepared for ${orgName}` : "Custom Implementation";
+  modalTitle.textContent = orgName ? `${orgName} Project Chart` : "Your AI Adoption Project Chart";
+}
 
-  article.innerHTML = `
-    <div class="module-card-header">
-      <div class="module-icon" style="background:${module.iconBg}; color:${module.iconColor};">
-        ${renderIcon(module.icon)}
+function renderStacks() {
+  stackSections.innerHTML = stackOrder.map((stack) => {
+    const cards = Object.entries(moduleCatalog)
+      .filter(([, module]) => module.stack === stack.key)
+      .map(([id, module]) => `
+        <div class="module-card p-6 rounded-2xl shadow-sm border border-brand-beige" data-module-id="${id}">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 ${module.iconWrap} rounded-lg">${safeIcon(module.icon).replace('class="w-5 h-5"', `class="${module.iconColor} w-5 h-5"`)}</div>
+            <h4 class="font-bold text-brand-dark text-lg">${module.title}</h4>
+          </div>
+          <p class="text-sm text-slate-500 mb-4">${module.description}</p>
+          <div class="bg-slate-50 p-4 rounded-xl mb-4 border border-slate-100 flex-grow">
+            <div class="mb-3">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Target Audience</span>
+              <p class="text-xs text-brand-dark font-medium">${module.audience}</p>
+            </div>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">The Pain</span>
+              <p class="text-xs text-slate-600 leading-relaxed">${module.pain}</p>
+            </div>
+          </div>
+          <div class="border-t border-brand-beige pt-3 mt-auto">
+            <button type="button" class="text-xs font-bold text-brand-rose hover:text-brand-darkerRed flex items-center justify-between w-full transition-colors detail-toggle" data-details-id="details-${id}">
+              What's included? <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200" id="icon-${id}"></i>
+            </button>
+            <div id="details-${id}" class="hidden mt-3 text-xs text-slate-500">
+              <ul class="list-disc pl-4 space-y-1.5">
+                ${module.details.map((detail) => `<li>${detail}</li>`).join("")}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+    return `
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-8 h-8 rounded-full bg-brand-dark text-brand-beige flex items-center justify-center text-xs font-bold">${stack.key}</span>
+          <h3 class="text-xl font-bold text-brand-dark">${stack.title}</h3>
+        </div>
+        <div class="grid grid-cols-1 gap-4">${cards}</div>
       </div>
-      <span class="module-price">${formatCurrency(module.price)}</span>
+    `;
+  }).join("");
+
+  lucide.createIcons();
+
+  document.querySelectorAll(".module-card").forEach((card) => {
+    card.addEventListener("click", () => toggleModule(card, card.dataset.moduleId));
+  });
+
+  document.querySelectorAll(".detail-toggle").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      toggleDetails(button.dataset.detailsId);
+    });
+  });
+}
+
+function toggleDetails(id) {
+  const detailsDiv = document.getElementById(id);
+  const icon = document.getElementById(id.replace("details-", "icon-"));
+  const isHidden = detailsDiv.classList.contains("hidden");
+  detailsDiv.classList.toggle("hidden", !isHidden);
+  icon.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)";
+}
+
+function toggleFaq(id) {
+  const content = document.getElementById(id);
+  const icon = document.getElementById(id.replace("faq-", "icon-faq-"));
+  const isHidden = content.classList.contains("hidden");
+  content.classList.toggle("hidden", !isHidden);
+  icon.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)";
+}
+
+function toggleChat() {
+  document.getElementById("chat-window").classList.toggle("hidden");
+}
+
+function handleChatKeyPress(event) {
+  if (event.key === "Enter") sendMessage();
+}
+
+function sendMessage() {
+  const input = document.getElementById("chat-input");
+  const message = input.value.trim();
+  if (!message) return;
+
+  const messagesDiv = document.getElementById("chat-messages");
+  messagesDiv.insertAdjacentHTML("beforeend", `
+    <div class="flex items-start gap-2 max-w-[85%] self-end flex-row-reverse animate-fade">
+      <div class="w-6 h-6 rounded-full bg-brand-dark flex-shrink-0 flex items-center justify-center font-bold text-white text-[10px]">U</div>
+      <div class="bg-brand-dark text-white p-3 rounded-xl rounded-tr-none shadow-sm">${message}</div>
     </div>
-    <h4>${module.title}</h4>
-    <p>${module.description}</p>
-    <button class="module-details-toggle" type="button" aria-expanded="false">
-      <span>What's included?</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="m6 9 6 6 6-6"></path>
-      </svg>
-    </button>
-    <ul class="module-details">
-      ${module.details.map((detail) => `<li>${detail}</li>`).join("")}
-    </ul>
-  `;
+  `);
+  input.value = "";
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-  article.addEventListener("click", () => {
-    if (!state.unlocked) {
-      scrollToSection("assessment");
-      return;
-    }
+  const typingId = `typing-${Date.now()}`;
+  messagesDiv.insertAdjacentHTML("beforeend", `
+    <div id="${typingId}" class="flex items-start gap-2 max-w-[85%] animate-fade">
+      <div class="w-6 h-6 rounded-full bg-brand-red flex-shrink-0 flex items-center justify-center font-bold text-white text-[10px]">R</div>
+      <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-sm border border-slate-200 text-slate-400 italic text-xs">Reed is typing...</div>
+    </div>
+  `);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-    toggleModule(module.id, article);
-  });
-
-  const toggleButton = article.querySelector(".module-details-toggle");
-  const details = article.querySelector(".module-details");
-
-  toggleButton.addEventListener("click", (event) => {
-    event.stopPropagation();
-    const expanded = toggleButton.getAttribute("aria-expanded") === "true";
-    toggleButton.setAttribute("aria-expanded", String(!expanded));
-    details.classList.toggle("open", !expanded);
-  });
-
-  return article;
-}
-
-function renderModuleCards() {
-  Object.values(modules).forEach((module) => {
-    const mount = stackMounts[module.stack];
-    if (mount) {
-      mount.appendChild(buildModuleCard(module));
-    }
-  });
-}
-
-function toggleModule(id, card) {
-  if (selectedModules.has(id)) {
-    selectedModules.delete(id);
-    card.classList.remove("selected");
-  } else {
-    selectedModules.add(id);
-    card.classList.add("selected");
-  }
-
-  updateBudget();
+  setTimeout(() => {
+    document.getElementById(typingId)?.remove();
+    messagesDiv.insertAdjacentHTML("beforeend", `
+      <div class="flex items-start gap-2 max-w-[85%] animate-fade">
+        <div class="w-6 h-6 rounded-full bg-brand-red flex-shrink-0 flex items-center justify-center font-bold text-white text-[10px]">R</div>
+        <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-sm border border-slate-200 text-slate-700 leading-relaxed">
+          That's a great question. Build your roadmap above and a Red Beans strategist can tailor the answer to your exact business context.
+        </div>
+      </div>
+    `);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }, 1200);
 }
 
 function updateBudget() {
-  if (selectedModules.size === 0) {
-    selectedList.innerHTML = '<div class="empty-state">Select modules on the left to build your estimate.</div>';
-    totalPrice.textContent = "$0";
-    finalizeButton.disabled = true;
-    finalizeButton.classList.add("is-disabled");
+  if (selected.size === 0) {
+    selectedList.innerHTML = '<div class="text-slate-400 italic text-sm py-4 border-b border-dashed border-brand-rose/30">Select modules on the left to build your roadmap...</div>';
+    finalizeBtn.disabled = true;
+    finalizeBtn.classList.add("bg-slate-200", "text-slate-500", "cursor-not-allowed");
+    finalizeBtn.classList.remove("bg-brand-red", "text-white", "hover:bg-brand-darkerRed", "shadow-lg", "cursor-pointer");
     return;
   }
 
-  const selectedItems = Array.from(selectedModules).map((id) => modules[id]);
-  const total = selectedItems.reduce((sum, module) => sum + module.price, 0);
+  finalizeBtn.disabled = false;
+  finalizeBtn.classList.remove("bg-slate-200", "text-slate-500", "cursor-not-allowed");
+  finalizeBtn.classList.add("bg-brand-red", "text-white", "hover:bg-brand-darkerRed", "shadow-lg", "cursor-pointer");
 
-  selectedList.innerHTML = selectedItems.map((module) => `
-    <div class="selected-item">
-      <strong>${module.title}</strong>
-      <span>${formatCurrency(module.price)}</span>
+  selectedList.innerHTML = Array.from(selected).map((id) => `
+    <div class="flex justify-between items-center py-3 border-b border-brand-beige animate-fade">
+      <span class="text-sm font-semibold text-brand-dark">${moduleCatalog[id].title}</span>
+      <span class="text-xs font-bold text-slate-400 uppercase">Selected</span>
     </div>
   `).join("");
-
-  totalPrice.textContent = formatCurrency(total);
-  finalizeButton.disabled = false;
-  finalizeButton.classList.remove("is-disabled");
 }
 
-function unlockBuilder(profile) {
-  state.unlocked = true;
-  state.profile = profile;
-
-  builder.classList.remove("is-locked");
-  builder.classList.add("is-unlocked");
-
-  sidebarName.textContent = `Prepared for ${profile.orgName}`;
-  modalTitle.textContent = `${profile.orgName} Project Chart`;
-  navLockIcon.innerHTML = '<path d="M7 10V7a5 5 0 0 1 9.9-1"></path><rect x="4" y="10" width="16" height="10" rx="2"></rect>';
-}
-
-function persistAssessment(profile) {
-  try {
-    window.localStorage.setItem("redstride-assessment", JSON.stringify(profile));
-  } catch (error) {
-    console.warn("Unable to persist assessment", error);
+function toggleModule(card, id) {
+  if (selected.has(id)) {
+    selected.delete(id);
+    card.classList.remove("selected");
+  } else {
+    selected.add(id);
+    card.classList.add("selected");
   }
+  updateBudget();
 }
 
-function loadAssessment() {
-  try {
-    const raw = window.localStorage.getItem("redstride-assessment");
-    if (!raw) return null;
-    return JSON.parse(raw);
-  } catch (error) {
-    console.warn("Unable to load saved assessment", error);
-    return null;
-  }
-}
-
-function applyAssessmentToForm(profile) {
-  Object.entries(profile).forEach(([key, value]) => {
-    const field = assessmentForm.elements.namedItem(key);
-    if (field && typeof value === "string") {
-      field.value = value;
-    }
-  });
-}
-
-function collectFormData(form) {
-  const data = new FormData(form);
-  return Object.fromEntries(data.entries());
-}
-
-function getSelectedModules() {
-  return Array.from(selectedModules).map((id) => modules[id]);
+function collectProfile() {
+  const formData = new FormData(assessmentForm);
+  const goalsCard = document.querySelector('#builder textarea[name="challenges"]');
+  const outcomesCard = document.querySelector('#builder textarea[name="goals"]');
+  const budgetSelect = document.querySelector('#builder select[name="budget"]');
+  const profile = Object.fromEntries(formData.entries());
+  profile.challenges = goalsCard.value.trim();
+  profile.goals = outcomesCard.value.trim();
+  profile.budget = budgetSelect.value;
+  return profile;
 }
 
 function buildResultsPayload() {
-  const chosen = getSelectedModules();
-  const totalInvestment = chosen.reduce((sum, module) => sum + module.price, 0);
-
+  const profile = collectProfile();
+  state.profile = profile;
   return {
     submittedAt: new Date().toISOString(),
     pointOfContact: {
-      name: state.profile?.clientName || "",
-      title: state.profile?.jobTitle || "",
-      phone: state.profile?.phone || "",
-      email: state.profile?.email || ""
+      name: profile.clientName || "",
+      title: profile.jobTitle || "",
+      phone: profile.phone || "",
+      email: profile.email || ""
     },
     organization: {
-      name: state.profile?.orgName || "",
-      participants: state.profile?.participants || "",
-      budget: state.profile?.budget || ""
+      name: profile.orgName || "",
+      participants: profile.participants || "",
+      budget: profile.budget || ""
     },
     goals: {
-      challenges: state.profile?.challenges || "",
-      desiredOutcomes: state.profile?.goals || ""
+      challenges: profile.challenges || "",
+      desiredOutcomes: profile.goals || ""
     },
-    selectedModules: chosen.map((module) => ({
-      title: module.title,
-      stack: module.stack,
-      price: module.price,
-      timelineStartPercent: module.start,
-      timelineWidthPercent: module.width
-    })),
-    totalInvestment
+    selectedModules: Array.from(selected).map((id) => ({
+      id,
+      title: moduleCatalog[id].title,
+      stack: moduleCatalog[id].stack,
+      start: moduleCatalog[id].start,
+      width: moduleCatalog[id].width
+    }))
   };
 }
 
 function buildSummaryText(payload) {
-  const moduleLines = payload.selectedModules.length
-    ? payload.selectedModules
-        .map((module) => `- ${module.title} (Stack ${module.stack}) - ${formatCurrency(module.price)}`)
-        .join("\n")
-    : "- No modules selected";
-
   return [
-    "RedStride AI Business Blueprint Summary",
+    "Red Beans AI Business Blueprint Summary",
     "",
     `Submitted: ${payload.submittedAt}`,
     "",
-    "Point of Contact",
-    `Name: ${payload.pointOfContact.name}`,
-    `Title: ${payload.pointOfContact.title}`,
-    `Phone: ${payload.pointOfContact.phone}`,
+    `Contact: ${payload.pointOfContact.name} | ${payload.pointOfContact.title}`,
     `Email: ${payload.pointOfContact.email}`,
-    "",
-    "Organization",
-    `Name: ${payload.organization.name}`,
+    `Phone: ${payload.pointOfContact.phone}`,
+    `Business: ${payload.organization.name}`,
     `Participants: ${payload.organization.participants}`,
     `Budget: ${payload.organization.budget}`,
     "",
-    "Challenges",
+    "Challenges:",
     payload.goals.challenges || "Not provided",
     "",
-    "Desired Outcomes",
+    "Desired Outcomes:",
     payload.goals.desiredOutcomes || "Not provided",
     "",
-    "Selected Modules",
-    moduleLines,
-    "",
-    `Total Investment: ${formatCurrency(payload.totalInvestment)}`
+    "Selected Modules:",
+    payload.selectedModules.map((module) => `- ${module.title} (Stack ${module.stack})`).join("\n") || "- None selected"
   ].join("\n");
 }
 
-function setSubmissionStatus(message, kind = "") {
+function setSubmissionStatus(message, type = "") {
   submissionStatus.textContent = message;
-  submissionStatus.classList.remove("is-success", "is-error");
-  if (kind) {
-    submissionStatus.classList.add(kind);
-  }
+  submissionStatus.className = "text-sm ";
+  submissionStatus.classList.add(type === "error" ? "text-brand-red" : type === "success" ? "text-emerald-600" : "text-slate-500");
 }
 
-function addWrappedText(doc, text, x, y, maxWidth, lineHeight = 6, options = {}) {
+function openChart() {
+  if (selected.size === 0) return;
+  updateSidebarName();
+  const payload = buildResultsPayload();
+  phase2Deliverables.innerHTML = payload.selectedModules.map((module) => `<li>${module.title}</li>`).join("");
+  chartRows.innerHTML = payload.selectedModules.map((module) => `
+    <div class="flex items-center">
+      <div class="w-1/3">
+        <h5 class="font-bold text-sm text-brand-dark">${module.title}</h5>
+        <span class="text-[10px] uppercase text-slate-400 font-bold">Stack ${module.stack}</span>
+      </div>
+      <div class="w-2/3 relative h-8">
+        <div class="gantt-bar ${moduleCatalog[module.id].color} shadow-sm" style="width: ${module.width}%; left: ${module.start}%">
+          <span class="absolute -top-5 left-0 text-[9px] font-bold text-slate-400">IMPLEMENTATION</span>
+        </div>
+      </div>
+    </div>
+  `).join("");
+  modal.classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+  setSubmissionStatus("");
+  lucide.createIcons();
+}
+
+function closeChart() {
+  modal.classList.add("hidden");
+  document.body.style.overflow = "auto";
+}
+
+function addWrappedText(doc, text, x, y, maxWidth, lineHeight = 6) {
   const lines = doc.splitTextToSize(text, maxWidth);
-  doc.text(lines, x, y, options);
+  doc.text(lines, x, y);
   return y + lines.length * lineHeight;
 }
 
 function downloadSnapshot() {
   const payload = buildResultsPayload();
-  const orgSlug = (payload.organization.name || "redstride-results")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-  const fileName = `${orgSlug || "redstride-results"}-ai-blueprint.pdf`;
-
   if (!window.jspdf?.jsPDF) {
-    setSubmissionStatus("PDF export is not available right now. Please refresh and try again.", "is-error");
+    setSubmissionStatus("PDF export is not available right now.", "error");
     return;
   }
-
   const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({
-    orientation: "portrait",
-    unit: "mm",
-    format: "a4"
-  });
-
+  const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   const pageHeight = doc.internal.pageSize.getHeight();
   const pageWidth = doc.internal.pageSize.getWidth();
   const margin = 18;
   const contentWidth = pageWidth - margin * 2;
   let y = 20;
-
   const ensureSpace = (needed = 16) => {
     if (y + needed > pageHeight - margin) {
       doc.addPage();
@@ -571,7 +588,7 @@ function downloadSnapshot() {
   doc.setTextColor(255, 255, 255);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(20);
-  doc.text("RedStride AI Business Blueprint", margin + 6, y + 9);
+  doc.text("Red Beans AI Business Blueprint", margin + 6, y + 9);
   doc.setFontSize(10);
   doc.setFont("helvetica", "normal");
   doc.text(`Generated ${new Date(payload.submittedAt).toLocaleString()}`, margin + 6, y + 16);
@@ -584,27 +601,19 @@ function downloadSnapshot() {
   y += 8;
   doc.setFont("helvetica", "normal");
   doc.setFontSize(11);
-  doc.text(`Name: ${payload.pointOfContact.name}`, margin, y);
-  y += 6;
-  doc.text(`Title: ${payload.pointOfContact.title}`, margin, y);
-  y += 6;
-  doc.text(`Phone: ${payload.pointOfContact.phone}`, margin, y);
-  y += 6;
-  doc.text(`Email: ${payload.pointOfContact.email}`, margin, y);
-  y += 10;
-
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(14);
-  doc.text("Business", margin, y);
-  y += 8;
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(11);
-  doc.text(`Name: ${payload.organization.name}`, margin, y);
-  y += 6;
-  doc.text(`Participants: ${payload.organization.participants}`, margin, y);
-  y += 6;
-  doc.text(`Budget: ${payload.organization.budget}`, margin, y);
-  y += 10;
+  [
+    `Name: ${payload.pointOfContact.name}`,
+    `Title: ${payload.pointOfContact.title}`,
+    `Phone: ${payload.pointOfContact.phone}`,
+    `Email: ${payload.pointOfContact.email}`,
+    `Business: ${payload.organization.name}`,
+    `Participants: ${payload.organization.participants}`,
+    `Budget: ${payload.organization.budget}`
+  ].forEach((line) => {
+    doc.text(line, margin, y);
+    y += 6;
+  });
+  y += 4;
 
   ensureSpace(24);
   doc.setFont("helvetica", "bold");
@@ -631,177 +640,89 @@ function downloadSnapshot() {
   doc.setFontSize(14);
   doc.text("Selected Modules", margin, y);
   y += 8;
-
-  if (payload.selectedModules.length === 0) {
-    doc.setFont("helvetica", "normal");
+  payload.selectedModules.forEach((module) => {
+    ensureSpace(18);
+    doc.setFillColor(232, 223, 216);
+    doc.roundedRect(margin, y - 5, contentWidth, 14, 3, 3, "F");
+    doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
-    doc.text("No modules selected", margin, y);
-    y += 8;
-  } else {
-    payload.selectedModules.forEach((module) => {
-      ensureSpace(18);
-      doc.setFillColor(232, 223, 216);
-      doc.roundedRect(margin, y - 5, contentWidth, 14, 3, 3, "F");
-      doc.setFont("helvetica", "bold");
-      doc.setFontSize(11);
-      doc.text(module.title, margin + 4, y);
-      doc.setFont("helvetica", "normal");
-      doc.text(`Stack ${module.stack}`, margin + 4, y + 5);
-      doc.setFont("helvetica", "bold");
-      doc.text(formatCurrency(module.price), pageWidth - margin - 4, y, { align: "right" });
-      y += 18;
-    });
-  }
+    doc.text(module.title, margin + 4, y);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Stack ${module.stack}`, margin + 4, y + 5);
+    y += 18;
+  });
 
-  ensureSpace(18);
-  doc.setDrawColor(180, 112, 109);
-  doc.line(margin, y, pageWidth - margin, y);
-  y += 9;
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(13);
-  doc.text(`Total Investment: ${formatCurrency(payload.totalInvestment)}`, margin, y);
-
-  doc.save(fileName);
-  setSubmissionStatus("PDF snapshot downloaded.", "is-success");
+  const slug = (payload.organization.name || "red-beans-blueprint").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || "red-beans-blueprint";
+  doc.save(`${slug}-ai-blueprint.pdf`);
+  setSubmissionStatus("PDF snapshot downloaded.", "success");
 }
 
 async function sendResultsSummary() {
-  if (!state.profile?.email) {
-    setSubmissionStatus("Please complete the assessment form before sending results.", "is-error");
+  const payload = buildResultsPayload();
+  if (!payload.pointOfContact.email || selected.size === 0) {
+    setSubmissionStatus("Please complete the assessment and select at least one module before sending results.", "error");
     return;
   }
 
-  const payload = buildResultsPayload();
-  const summary = buildSummaryText(payload);
-  const buildRequestBody = () => {
-    const body = new FormData();
-    body.append("contact_name", payload.pointOfContact.name);
-    body.append("contact_title", payload.pointOfContact.title);
-    body.append("contact_phone", payload.pointOfContact.phone);
-    body.append("email", payload.pointOfContact.email);
-    body.append("organization_name", payload.organization.name);
-    body.append("participant_count", payload.organization.participants);
-    body.append("budget_range", payload.organization.budget);
-    body.append("selected_modules", payload.selectedModules.map((module) => module.title).join(", "));
-    body.append("total_investment", formatCurrency(payload.totalInvestment));
-    body.append("summary", summary);
-    body.append("_subject", `RedStride AI business blueprint for ${payload.organization.name || "New inquiry"}`);
-    body.append("_template", "table");
-    body.append("_captcha", "false");
-    return body;
-  };
-
-  requestProposalButton.disabled = true;
   setSubmissionStatus("Sending results summary to Red Beans...", "");
+  emailButton.disabled = true;
+  quoteButton.disabled = true;
 
   try {
-    for (const recipient of RESULTS_EMAILS) {
+    for (const recipient of resultsEmails) {
+      const body = new FormData();
+      body.append("contact_name", payload.pointOfContact.name);
+      body.append("contact_title", payload.pointOfContact.title);
+      body.append("contact_phone", payload.pointOfContact.phone);
+      body.append("email", payload.pointOfContact.email);
+      body.append("organization_name", payload.organization.name);
+      body.append("participant_count", payload.organization.participants);
+      body.append("budget_range", payload.organization.budget);
+      body.append("selected_modules", payload.selectedModules.map((module) => module.title).join(", "));
+      body.append("summary", buildSummaryText(payload));
+      body.append("_subject", `Red Beans AI business blueprint for ${payload.organization.name || "New inquiry"}`);
+      body.append("_template", "table");
+      body.append("_captcha", "false");
+
       const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
         method: "POST",
-        headers: {
-          Accept: "application/json"
-        },
-        body: buildRequestBody()
+        headers: { Accept: "application/json" },
+        body
       });
       const result = await response.json();
-
       if (!response.ok || result.success === false) {
         throw new Error(result.message || `Unable to send summary to ${recipient}.`);
       }
     }
 
-    setSubmissionStatus(
-      "Results summary sent to David and MyKinzi. If either inbox has never been activated in FormSubmit before, that recipient may need to click the activation email once before future submissions flow automatically.",
-      "is-success"
-    );
+    setSubmissionStatus("Results summary sent to David and MyKinzi.", "success");
   } catch (error) {
-    setSubmissionStatus(
-      "Email send failed in-browser. The PDF download still works, and we can switch to a dedicated backend for guaranteed delivery.",
-      "is-error"
-    );
+    setSubmissionStatus("Email send failed. The PDF download still works, and we can switch to a dedicated backend for guaranteed delivery.", "error");
   } finally {
-    requestProposalButton.disabled = false;
+    emailButton.disabled = false;
+    quoteButton.disabled = false;
   }
 }
-
-function openChart() {
-  if (selectedModules.size === 0) return;
-
-  const chosen = getSelectedModules();
-  phaseDeliverables.innerHTML = chosen.map((module) => `<li>${module.title}</li>`).join("");
-
-  chartRows.innerHTML = chosen.map((module) => `
-    <div class="chart-row">
-      <div class="chart-row-title">
-        <strong>${module.title}</strong>
-        <span>Stack ${module.stack}</span>
-      </div>
-      <div class="chart-row-timeline">
-        <div
-          class="chart-bar"
-          style="left:${module.start}%; width:${module.width}%; background:${module.color};"
-        >
-          Implementation
-        </div>
-      </div>
-    </div>
-  `).join("");
-
-  modal.classList.remove("hidden");
-  modal.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
-  setSubmissionStatus("");
-}
-
-function closeChart() {
-  modal.classList.add("hidden");
-  modal.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("modal-open");
-}
-
-function scrollToSection(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
-document.querySelectorAll("[data-scroll-target]").forEach((element) => {
-  element.addEventListener("click", () => {
-    const target = element.getAttribute("data-scroll-target");
-    if (target) scrollToSection(target);
-  });
-});
 
 assessmentForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const profile = collectFormData(assessmentForm);
-  persistAssessment(profile);
-  unlockBuilder(profile);
-  scrollToSection("builder");
+  state.profile = collectProfile();
+  updateSidebarName();
+  document.getElementById("builder").scrollIntoView({ behavior: "smooth" });
 });
 
-finalizeButton.addEventListener("click", openChart);
-closeChartButton.addEventListener("click", closeChart);
-modal.addEventListener("click", (event) => {
-  const target = event.target;
-  if (target instanceof HTMLElement && target.dataset.closeModal === "true") {
-    closeChart();
-  }
-});
+orgNameInput.addEventListener("input", updateSidebarName);
+finalizeBtn.addEventListener("click", openChart);
+downloadButton.addEventListener("click", downloadSnapshot);
+emailButton.addEventListener("click", sendResultsSummary);
+quoteButton.addEventListener("click", sendResultsSummary);
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !modal.classList.contains("hidden")) {
-    closeChart();
-  }
-});
+renderStacks();
+updateSidebarName();
+lucide.createIcons();
 
-requestProposalButton.addEventListener("click", () => {
-  sendResultsSummary();
-});
-downloadSnapshotButton.addEventListener("click", downloadSnapshot);
-
-renderModuleCards();
-
-const savedProfile = loadAssessment();
-if (savedProfile) {
-  applyAssessmentToForm(savedProfile);
-  unlockBuilder(savedProfile);
-}
+window.toggleFaq = toggleFaq;
+window.toggleChat = toggleChat;
+window.handleChatKeyPress = handleChatKeyPress;
+window.sendMessage = sendMessage;
+window.closeChart = closeChart;
